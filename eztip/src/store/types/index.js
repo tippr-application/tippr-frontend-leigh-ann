@@ -1,0 +1,1 @@
+// variable names as export const VARIABLE_NAME = "VARIABLE_NAME"
