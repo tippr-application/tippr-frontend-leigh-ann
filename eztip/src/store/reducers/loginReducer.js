@@ -1,4 +1,4 @@
-// impot { } from '../types';
+// import { } from '../types';
 
 const initialState = {
 
