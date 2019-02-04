@@ -1,14 +1,21 @@
 import axios from "axios";
-// import { } from "../types";
+import {
+  GET_PROFILE_INFO_INIT,
+  GET_PROFILE_INFO_SUCCESS,
+  GET_PROFILE_INFO_FAILURE
+} from "../types";
 
-export const actionCreator = _ => dispatch => {
-  dispatch({ type: VARIABLE_NAMES_STARTED });
+// Employee Action Creators
+
+export const getProfileById = id => dispatch => {
+  dispatch({ type: GET_PROFILE_INFO_INIT });
   axios
-    .get("")
+    .get(`https://eztip.herokuapp.com/workers/${id}`)
     .then(res => {
-      dispatch({ type: VARIABLE_NAMES_SUCCESS, payload: res });
+      console.log(res.data);
+      dispatch({ type: GET_PROFILE_INFO_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: VARIABLE_NAMES_ERROR, payload: err });
+      dispatch({ type: GET_PROFILE_INFO_FAILURE, payload: err });
     });
 };
