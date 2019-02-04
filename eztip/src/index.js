@@ -3,12 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from 'redux';
 import { BrowserRouter as Router, withRouter } from 'react-router-dom';
-import thunk from 'redux-thunk';
-import rootReducer from './store/reducers';
-
-const store = createStore(rootReducer, applyMiddleware(thunk));
+import { store } from './store';
 
 const AppWithRouter = withRouter(App);
 
