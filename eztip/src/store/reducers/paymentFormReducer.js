@@ -4,7 +4,7 @@ const initialState = {
 
 };
 
-export const reducer = (state = initialState, action) => {
+export const paymentFormReducer = (state = initialState, action) => {
     switch(action.type) {
         default:
         return state;

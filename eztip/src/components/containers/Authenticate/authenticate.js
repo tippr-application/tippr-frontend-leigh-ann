@@ -8,7 +8,7 @@ const authenticate = HomeView => LoginView =>
       super();
       this.state = {
         username: "",
-        loggedIn: false
+        loggedIn: true
       };
     }
 

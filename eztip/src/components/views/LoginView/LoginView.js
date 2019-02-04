@@ -1,7 +1,12 @@
 import React from 'react';
+import { LoginForm } from '../../presentational/LoginForm';
 
 const LoginView = props => {
-    return <p>LoginView</p>;
+    return (
+        <div>
+           <LoginForm />
+        </div>
+    )
 }
 
 export default LoginView;
