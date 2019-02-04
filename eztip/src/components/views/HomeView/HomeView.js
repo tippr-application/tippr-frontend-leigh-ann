@@ -1,7 +1,7 @@
 import React from 'react';
 
-const LoginView = props => {
+const HomeView = props => {
     return <p>LoginView</p>;
 }
 
-export default LoginView;
+export default HomeView;
