@@ -10,13 +10,12 @@ import { getEmployees } from '../../../store/actions';
 
 class HomeView extends React.Component {
 
-    // getEmployeeById = id => {
-    //     this.props.getProfileById(id);
-    // }
-
     componentDidMount() {
         this.props.getEmployees();
-        // get all users, not just employees
+        console.log(this.props);
+        this.props.userType === "employee"
+            ? this.props.history.push("/welcome/employee")
+            : this.props.history.push("/welcome/guest")
     }
 
     render() {
@@ -24,10 +23,8 @@ class HomeView extends React.Component {
             <div>
                 <Navigation />
                 <h1>Welcome</h1>
-                {/* {this.props.isAUser} 
-                ? <Route exact path="/guest" component={GuestView} />
-                : <Route exact path="/employee/:id" render={props => <EmployeeView {...props} users={this.props.users} />} /> */}
-                {this.props.isAUser ? <GuestView /> : <EmployeeView users={this.props.users} />}
+                <Route path="/welcome/employee" render={props => <EmployeeView {...props} />} />
+                <Route path="/welcome/guest" render={props => <GuestView {...props} />} />
             </div>
         )
     }
@@ -36,7 +33,7 @@ class HomeView extends React.Component {
 
 const mapStateToProps = state => ({
     users: state.userReducer.users,
-    isAUser: state.userReducer.isAUser
+    userType: state.userReducer.userType
     
 });
 

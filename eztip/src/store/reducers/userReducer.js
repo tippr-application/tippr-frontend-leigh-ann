@@ -13,12 +13,13 @@ import {
 const initialState = {
   users: [],
   isFetchingUsers: false,
-  isAUser: false,
+  userType: "",
   isloggingIn: false,
   loggedIn: false,
   isfetchingInfo: false,
   userInfo: {},
-  error: ""
+  error: "",
+  token: ""
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -61,13 +62,20 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggingIn: true,
-        error: ""
+        error: "",
+        userType: ""
       };
     case LOGIN_SUCCESS:
       return {
         ...state,
         isLoggingIn: false,
-        loggedIn: true
+        loggedIn: true,
+        userType: action.payload.user_type,
+        token: action.payload.token,
+        userInfo: {
+            username: action.payload.username,
+            userId: action.payload.userId
+        }
       };
     case LOGIN_FAILURE:
       return {
