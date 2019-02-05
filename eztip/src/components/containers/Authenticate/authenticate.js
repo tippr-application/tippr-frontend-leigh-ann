@@ -1,23 +1,23 @@
 import React from "react";
 import { HomeView } from '../../views/HomeView';
 import { LoginView } from '../../views/LoginView';
+import { connect } from 'react-redux';
 
 const authenticate = HomeView => LoginView =>
   class extends React.Component {
-    constructor() {
-      super();
-      this.state = {
-        username: "",
-        loggedIn: true
-      };
-    }
 
     render() {
-      if (this.state.loggedIn) {
-        return <HomeView match={this.props.match} history={this.props.history} />;
-      }
-      return <LoginView />;
-    }
-  };
+      return (
+        this.props.loggedIn ? 
+        <HomeView match={this.props.match} history={this.props.history} />
+        : <LoginView history={this.props.history} />
+      )
 
-export default authenticate(HomeView)(LoginView);
+      }
+    }
+
+  const mapStateToProps = state => ({
+    loggedIn: state.userReducer.loggedIn
+  })
+
+export default connect(mapStateToProps)(authenticate(HomeView)(LoginView));

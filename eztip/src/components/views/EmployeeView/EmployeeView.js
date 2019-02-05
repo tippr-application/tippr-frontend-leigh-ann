@@ -21,9 +21,10 @@ class EmployeeView extends React.Component {
     render() {
         return (
             <div>
-                <Employee users={this.props.users} />
+                {/* <Employee users={this.props.users} />
                 <Link to="/employee/:id/create"><button>Create Profile</button></Link>
-                <Route exact path="/employee/:id/create" component={ProfileForm} />
+                <Route exact path="/employee/:id/create" component={ProfileForm} /> */}
+                EmployeeView
             </div>
         )
     }

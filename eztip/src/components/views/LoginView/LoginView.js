@@ -4,7 +4,7 @@ import { LoginForm } from '../../presentational/LoginForm';
 const LoginView = props => {
     return (
         <div>
-           <LoginForm />
+           <LoginForm history={props.history} />
         </div>
     )
 }
