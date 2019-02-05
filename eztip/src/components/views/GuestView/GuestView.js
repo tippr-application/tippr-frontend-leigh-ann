@@ -7,13 +7,13 @@ import { EmployeeCard } from '../../presentational/Employee';
 import { PaymentFormContainer } from '../../containers/PaymentFormContainer';
 
 const GuestView = props => {
+    console.log(props);
     const users = props.users;
-
     return (
         <div>
             <h1>Guest</h1>
             
-            <Route exact path="/welcome/guest" render={props => <EmployeeListContainer {...props} />} />
+            <Route exact path="/welcome/guest" render={props => <EmployeeListContainer {...props} users={users} />} />
             <Route exact path="/welcome/guest/:id" render={props => <EmployeeCard {...props} />} />
             <Route path="/welcome/guest/:id/tip" render={props => <PaymentFormContainer {...props} /> } />
         </div>

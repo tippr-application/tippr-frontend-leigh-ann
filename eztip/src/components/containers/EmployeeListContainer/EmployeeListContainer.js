@@ -1,7 +1,14 @@
-import React from 'react';
+import React from "react";
+import { EmployeeList } from "../../presentational/EmployeeList";
 
 const EmployeeListContainer = props => {
-    return <div>EmployeeListContainer</div>
-}
+  return (
+    <EmployeeList
+      users={props.users}
+      match={props.match}
+      history={props.history}
+    />
+  );
+};
 
 export default EmployeeListContainer;
