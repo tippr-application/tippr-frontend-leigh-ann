@@ -56,6 +56,7 @@ export const login = loginInfo => dispatch => {
     .post('https://eztip.herokuapp.com/login', loginInfo)
     .then(res => {
       localStorage.setItem("token", res.data.token);
+      console.log(res.data);
       dispatch({ type: LOGIN_SUCCESS, payload: { token: res.data.token, loginMsg: res.data.message } })
     })
     .catch(err => dispatch({ type: LOGIN_FAILURE, payload: err.data }));
