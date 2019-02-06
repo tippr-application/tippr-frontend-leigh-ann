@@ -1,6 +1,7 @@
 import React from "react";
 import { login } from "../../../store/actions";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class LoginForm extends React.Component {
@@ -42,6 +43,7 @@ class LoginForm extends React.Component {
           />
           <button>Sign in</button>
         </form>
+        <p>New to this? <Link to="/signup">Sign up.</Link></p>
       </div>
     );
   }
@@ -50,6 +52,10 @@ class LoginForm extends React.Component {
 LoginForm.propTypes = {
   history: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => {
+
 }
 
 export default connect(
