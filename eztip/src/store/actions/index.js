@@ -1,8 +1,5 @@
 import axios from "axios";
 import {
-  // GET_PROFILE_INFO_INIT,
-  // GET_PROFILE_INFO_SUCCESS,
-  // GET_PROFILE_INFO_FAILURE,
   GET_EMPLOYEES_INIT,
   GET_EMPLOYEES_SUCCESS,
   GET_EMPLOYEES_FAILURE,
@@ -17,13 +14,19 @@ import {
   UPDATE_PROFILE_INFO_FAILURE,
   CREATE_PROFILE_INFO_INIT,
   CREATE_PROFILE_INFO_SUCCESS,
-  CREATE_PROFILE_INFO_FAILURE
+  CREATE_PROFILE_INFO_FAILURE,
+  UPDATE_PHOTO_INIT,
+  UPDATE_PHOTO_SUCCESS,
+  UPDATE_PHOTO_FAILURE,
+  REGISTER_INIT,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE
 } from "../types";
 
 export const getEmployees = () => dispatch => {
   dispatch({ type: GET_EMPLOYEES_INIT });
   const userToken = localStorage.getItem("token");
-  const reqOptions = { headers: {authorization: userToken }}
+  const reqOptions = { headers: { authorization: userToken } };
   axios
     .get(`https://eztip.herokuapp.com/workers`, reqOptions)
     .then(res => {
@@ -50,40 +53,79 @@ export const getEmployees = () => dispatch => {
 export const login = loginInfo => dispatch => {
   dispatch({ type: LOGIN_INIT });
   axios
-    .post('https://eztip.herokuapp.com/login', loginInfo)
+    .post("https://eztip.herokuapp.com/login", loginInfo)
     .then(res => {
-      localStorage.setItem("token", res.data.token);
       console.log(res.data);
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data })
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: LOGIN_FAILURE, payload: err.data }));
-}
+};
 
-export const submitPayment = (id, payment) => dispatch => {
+export const submitPayment = info => dispatch => {
   dispatch({ type: SUBMIT_PAYMENT_INIT });
+  const userToken = localStorage.getItem("token");
+  const reqOptions = { headers: { authorization: userToken } };
   axios
-    .post(`https://eztip.herokuapp.com/tips/${id}`, payment)
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err));
-}
+    .post(`https://eztip.herokuapp.com/tips/`, info, reqOptions)
+    .then(res => {
+      console.log(res.data);
+      dispatch({ type: SUBMIT_PAYMENT_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: SUBMIT_PAYMENT_FAILURE, payload: err });
+    });
+};
 
 export const createInfo = info => dispatch => {
   dispatch({ type: CREATE_PROFILE_INFO_INIT });
+  const userToken = localStorage.getItem("token");
+  const reqOptions = { headers: { authorization: userToken } };
   axios
-    .post(`https://eztip.herokuapp.com/workers`, info)
-    .then(res=> console.log(res.data))
-    .catch(err=> console.log(err));
-}
+    .post(`https://eztip.herokuapp.com/workers`, info, reqOptions)
+    .then(res => {
+      console.log(res.data);
+      dispatch({ type: CREATE_PROFILE_INFO_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: CREATE_PROFILE_INFO_FAILURE, payload: err });
+    });
+};
 
 export const updateInfo = (id, info) => dispatch => {
   dispatch({ type: UPDATE_PROFILE_INFO_INIT });
+  const userToken = localStorage.getItem("token");
+  const reqOptions = { headers: { authorization: userToken } };
   axios
-    .put(`https://eztip.herokuapp.com/workers/${id}`, info)
+    .put(`https://eztip.herokuapp.com/workers/${id}`, info, reqOptions)
     .then(res => {
       console.log("updateInfo", res);
-      dispatch({ type: UPDATE_PROFILE_INFO_SUCCESS, payload: res })
+      dispatch({ type: UPDATE_PROFILE_INFO_SUCCESS, payload: res });
     })
     .catch(err => {
+      console.log("updateInfo", err);
       dispatch({ type: UPDATE_PROFILE_INFO_FAILURE, payload: err });
     });
+};
+
+export const updateProfilePhoto = (id, fd) => dispatch => {
+  dispatch({ type: UPDATE_PHOTO_INIT });
+  const userToken = localStorage.getItem("token");
+  const reqOptions = { headers: { authorization: userToken } };
+  axios
+    .post(`https://eztip.herokuapp.com/workers/${id}/upload`, fd, reqOptions)
+    .then(res => {
+      dispatch({ type: UPDATE_PHOTO_SUCCESS, payload: res.data.data.imgUrl });
+    })
+    .catch(err => dispatch({ type: UPDATE_PHOTO_FAILURE, payload: err.data }));
+};
+
+export const registerUser = info => dispatch => {
+  dispatch({ type: REGISTER_INIT });
+  axios
+    .post("https://eztip.herokuapp.com/register", info)
+    .then(res => {
+      dispatch({ type: REGISTER_SUCCESS, payload: res.data })
+    })
+      .catch(err=> dispatch({ type: REGISTER_FAILURE, payload: err}));
 }

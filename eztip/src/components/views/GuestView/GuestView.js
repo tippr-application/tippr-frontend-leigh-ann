@@ -7,19 +7,27 @@ import { EmployeeCard } from '../../presentational/Employee';
 import { PaymentFormContainer } from '../../containers/PaymentFormContainer';
 
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const GuestViewContainer = styled.div`
+max-width: 1200px;
+width: 100%;
+margin: 0 auto;
+`;
+
 
 const GuestView = props => {
 
     const users = props.users;
     
     return (
-        <div>
+        <GuestViewContainer>
             <h1>Guest</h1>
             
             <Route exact path="/" render={props => <EmployeeListContainer {...props} users={users} />} />
             <Route exact path="/employee/:id" render={props => <EmployeeCard {...props} />} />
             <Route path="/employee/:id/tip" render={props => <PaymentFormContainer {...props} /> } />
-        </div>
+        </GuestViewContainer>
     )
 }
 

@@ -8,18 +8,21 @@ import { Navigation } from "../../presentational/Navigation";
 import { connect } from "react-redux";
 import { getEmployees } from "../../../store/actions";
 import PropTypes from "prop-types";
+import styled from 'styled-components';
+
+const HomeViewContainer = styled.div`
+position: relative;
+width: 100%
+`;
 
 class HomeView extends React.Component {
   componentDidMount() {
     this.props.getEmployees();
-    // this.props.userType === "employee"
-    //   ? this.props.history.push("/welcome/employee")
-    //   : this.props.history.push("/welcome/guest");
   }
 
   render() {
     return (
-      <div>
+      <HomeViewContainer>
         <Navigation />
         <h1>Welcome</h1>
         {this.props.userType === "employee" ? (
@@ -30,7 +33,7 @@ class HomeView extends React.Component {
             render={props => <GuestView {...props} />}
           />
         )}
-      </div>
+      </HomeViewContainer>
     );
   }
 }

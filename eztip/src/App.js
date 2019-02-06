@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import { authenticate } from './components/containers/authenticate';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { GlobalStyle } from './styles';
 
-import './App.css';
 
 class App extends Component {
   render() {
     return (
+      <>
+      <GlobalStyle />
       <div className="App">
         <DisplayedComponent match={this.props.match} history={this.props.history} />
       </div>
+      </>
     );
   }
 }

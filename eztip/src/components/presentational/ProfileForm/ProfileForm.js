@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createInfo, updateInfo } from "../../../store/actions";
+import { updateInfo, updateProfilePhoto } from "../../../store/actions";
 import PropTypes from "prop-types";
 
 class ProfileForm extends React.Component {
@@ -12,7 +12,8 @@ class ProfileForm extends React.Component {
       tagline: "",
       working_since: "",
       profile_photo: ""
-    }
+    },
+    selectedFile: null
   };
 
   componentDidMount() {
@@ -23,6 +24,7 @@ class ProfileForm extends React.Component {
 
   handleChange = e => {
     this.setState({
+      ...this.state,
       userInfo: {
         ...this.state.userInfo,
         [e.target.name]: e.target.value
@@ -30,8 +32,19 @@ class ProfileForm extends React.Component {
     });
   };
 
+  handleFile = e => {
+    this.setState({
+      selectedFile: e.target.files[0]
+    })
+  }
+
   conditionalSubmit = e => {
     e.preventDefault();
+    const fd = new FormData();
+    fd.append("image", this.state.selectedFile);
+    if (this.state.selectedFile) {
+      this.props.updateProfilePhoto(this.state.userInfo.id, fd);
+    }
     this.props.updateInfo(this.state.userInfo.id, this.state.userInfo);
     this.props.history.push("/");
   };
@@ -44,7 +57,11 @@ class ProfileForm extends React.Component {
   render() {
     return (
       <div>
-        <form>
+        <form 
+          onSubmit={e=>this.conditionalSubmit(e)}
+          method={this.props.loggedIn ? "Put" : "Post"}
+          encType="multipart/form-data"
+        >
           <input
             required
             autoComplete="off"
@@ -91,15 +108,12 @@ class ProfileForm extends React.Component {
             onChange={this.handleChange}
           />
           <input
-            required
             autoComplete="off"
-            type="text"
+            type="file"
             name="profile_photo"
-            value={this.state.userInfo.profile_photo}
-            placeholder="Profile photo URL"
-            onChange={this.handleChange}
+            onChange={this.handleFile}
           />
-          <button type="submit" onClick={e => this.conditionalSubmit(e)}>
+          <button type="submit">
             Save
           </button>
           <button type="button" onClick={e => this.routeBack(e)}>
@@ -124,5 +138,5 @@ ProfileForm.propTypes = {
 
 export default connect(
   mapStateToProps,
-  { createInfo, updateInfo }
+  { updateInfo, updateProfilePhoto }
 )(ProfileForm);
