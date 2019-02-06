@@ -1,32 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Route } from 'react-router-dom';
 
 import { Employee } from '../../presentational/Employee';
 import { ProfileFormContainer } from '../../containers/ProfileFormContainer';
 
+const EmployeeView = props => {
 
-// import { getProfileById } from '../../../store/actions';
+        console.log("EmployeeView", props)
 
-class EmployeeView extends React.Component {
-
-    // getEmployeeById = id => {
-    //     this.props.getProfileById(id);
-    // }
-
-    // componentDidMount() {
-    //     this.getEmployeeById(1);
-    // }
-
-    render() {
         return (
             <div>
-                <Employee />
-                <ProfileFormContainer history={this.props.history} />
+                <Route exact path="/" render={properties => <Employee {...properties} userInfo={props.userInfo} />} />
+                <Route path="/form" render={properties =>                 <ProfileFormContainer {...properties} history={props.history} employee={props.userInfo} />} />
             </div>
         )
-    }
-
 }
 
 const mapStateToProps = state => ({
@@ -43,7 +32,7 @@ EmployeeView.propTypes = {
         type_id: PropTypes.number,
         user_type: PropTypes.string,
         username: PropTypes.string,
-        working_since: PropTypes.string
+        working_since: PropTypes.number
     }),
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired

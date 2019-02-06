@@ -77,7 +77,7 @@ class PaymentForm extends React.Component {
 PaymentForm.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   handleChange: PropTypes.func,
   cancel: PropTypes.func,
   submitPayment: PropTypes.func

@@ -9,10 +9,6 @@ class LoginForm extends React.Component {
     password: ""
   };
 
-  componentDidMount() {
-    this.props.history.push("/login");
-  }
-
   inputChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -25,7 +21,6 @@ class LoginForm extends React.Component {
       username: this.state.username,
       password: this.state.password
     });
-    // this.props.history.push("/welcome")
   };
 
   render() {

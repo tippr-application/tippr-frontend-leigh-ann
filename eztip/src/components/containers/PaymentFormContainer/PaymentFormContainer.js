@@ -15,7 +15,6 @@ const PaymentFormContainer = props => {
 
 PaymentFormContainer.propTypes = {
   match: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
-  id: PropTypes.number.isRequired
+  history: PropTypes.object.isRequired
 }
 export default PaymentFormContainer;

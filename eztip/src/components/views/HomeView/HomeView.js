@@ -7,15 +7,14 @@ import { Navigation } from "../../presentational/Navigation";
 
 import { connect } from "react-redux";
 import { getEmployees } from "../../../store/actions";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 class HomeView extends React.Component {
-
   componentDidMount() {
     this.props.getEmployees();
-    this.props.userType === "employee"
-      ? this.props.history.push("/welcome/employee")
-      : this.props.history.push("/welcome/guest");
+    // this.props.userType === "employee"
+    //   ? this.props.history.push("/welcome/employee")
+    //   : this.props.history.push("/welcome/guest");
   }
 
   render() {
@@ -23,14 +22,14 @@ class HomeView extends React.Component {
       <div>
         <Navigation />
         <h1>Welcome</h1>
-        <Route
-          path="/welcome/employee"
-          render={props => <EmployeeView {...props} />}
-        />
-        <Route
-          path="/welcome/guest"
-          render={props => <GuestView {...props} />}
-        />
+        {this.props.userType === "employee" ? (
+          <Route path="/" render={props => <EmployeeView {...props} />} />
+        ) : (
+          <Route
+            path="/"
+            render={props => <GuestView {...props} />}
+          />
+        )}
       </div>
     );
   }
@@ -45,7 +44,7 @@ HomeView.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   getEmployees: PropTypes.func.isRequired
-}
+};
 
 export default connect(
   mapStateToProps,
