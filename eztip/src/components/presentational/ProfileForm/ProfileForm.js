@@ -31,6 +31,12 @@ class ProfileForm extends React.Component {
     });
   };
 
+  handleFile = e => {
+    this.setState({
+      selectedFile: e.target.files[0]
+    })
+  }
+
   conditionalSubmit = e => {
     e.preventDefault();
     const fd = new FormData();
@@ -50,7 +56,11 @@ class ProfileForm extends React.Component {
   render() {
     return (
       <div>
-        <form>
+        <form 
+          onSubmit={e=>this.conditionalSubmit(e)}
+          method={this.props.loggedIn ? "Put" : "Post"}
+          encType="multipart/form-data"
+        >
           <input
             required
             autoComplete="off"
@@ -97,15 +107,12 @@ class ProfileForm extends React.Component {
             onChange={this.handleChange}
           />
           <input
-            required
             autoComplete="off"
-            type="text"
+            type="file"
             name="profile_photo"
-            value={this.state.userInfo.profile_photo}
-            placeholder="Profile photo URL"
-            onChange={this.handleChange}
+            onChange={this.handleFile}
           />
-          <button type="submit" onClick={e => this.conditionalSubmit(e)}>
+          <button type="submit">
             Save
           </button>
           <button type="button" onClick={e => this.routeBack(e)}>

@@ -1,13 +1,13 @@
 import {
-  // GET_PROFILE_INFO_INIT,
-  // GET_PROFILE_INFO_SUCCESS,
-  // GET_PROFILE_INFO_FAILURE,
   GET_EMPLOYEES_INIT,
   GET_EMPLOYEES_SUCCESS,
   GET_EMPLOYEES_FAILURE,
   LOGIN_INIT,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE
+  LOGIN_FAILURE,
+  UPDATE_PHOTO_INIT,
+  UPDATE_PHOTO_SUCCESS,
+  UPDATE_PHOTO_FAILURE
 } from "../types";
 
 const initialState = {
@@ -89,6 +89,21 @@ export const userReducer = (state = initialState, action) => {
         isLoggingIn: false,
         error: action.payload
       };
+      case UPDATE_PHOTO_INIT:
+      return {
+        ...state,
+        error: ""
+      }
+      case UPDATE_PHOTO_SUCCESS:
+      return {
+        ...state,
+        users: action.payload
+      };
+      case UPDATE_PHOTO_FAILURE:
+      return {
+        ...state,
+        error: action.payload
+      }
     default:
       return state;
   }

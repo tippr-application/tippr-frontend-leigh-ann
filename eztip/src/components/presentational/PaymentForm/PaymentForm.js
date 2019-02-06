@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import { submitPayment } from '../../../store/actions';
+import { connect } from 'react-redux';
 
 class PaymentForm extends React.Component {
   state = {
@@ -30,6 +32,11 @@ class PaymentForm extends React.Component {
 
   submitPayment = e => {
     e.preventDefault();
+    this.props.submitPayment({
+      worker_id: this.state.id,
+      tip_amount: this.state.payment
+    })
+    this.state.history.push(`/employee/${this.state.id}`)
   };
 
   render() {
@@ -83,4 +90,4 @@ PaymentForm.propTypes = {
   submitPayment: PropTypes.func
 }
 
-export default PaymentForm;
+export default connect(null, { submitPayment })(PaymentForm);
