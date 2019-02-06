@@ -40,23 +40,6 @@ const initialState = {
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    // case GET_PROFILE_INFO_INIT:
-    //   return {
-    //     ...state,
-    //     isFetchingInfo: true,
-    //     error: ""
-    //   };
-    // case GET_PROFILE_INFO_SUCCESS:
-    //   return {
-    //     ...state,
-    //     isFetchingInfo: false,
-    //     userInfo: action.payload
-    //   };
-    // case GET_PROFILE_INFO_FAILURE:
-    //   return {
-    //     ...state,
-    //     error: action.payload
-    //   };
     case GET_EMPLOYEES_INIT:
       return {
         ...state,

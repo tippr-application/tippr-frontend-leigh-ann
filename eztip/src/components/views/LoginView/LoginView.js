@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 class LoginView extends React.Component {
   render() {
     return (
-      <div>
+      <>
         <Route exact path="/" render={props => <LoginForm {...props} />} />
         {this.props.userRegistered ? (
           <Route
@@ -22,7 +22,7 @@ class LoginView extends React.Component {
             render={props => <CreateUsernameForm {...props} />}
           />
         )}
-      </div>
+      </>
     );
   }
 }

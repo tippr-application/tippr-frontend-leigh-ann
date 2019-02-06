@@ -3,8 +3,8 @@ import React from 'react';
 const Navigation = props => {
     return (
         <div>
-            <span>Home</span>
-            <span>Pay Tip</span>
+            <p>Home</p>
+            <p>Pay Tip</p>
         </div>
     );
 }

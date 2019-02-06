@@ -16,7 +16,7 @@ class HomeView extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <Navigation />
         <h1>Welcome</h1>
         {this.props.userType === "employee" ? (
@@ -27,7 +27,7 @@ class HomeView extends React.Component {
             render={props => <GuestView {...props} />}
           />
         )}
-      </div>
+      </>
     );
   }
 }
