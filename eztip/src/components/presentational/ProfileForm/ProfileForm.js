@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 class ProfileForm extends React.Component {
     state = {
@@ -82,6 +83,12 @@ class ProfileForm extends React.Component {
       </div>
     );
   }
+}
+
+ProfileForm.propTypes = {
+  history: PropTypes.object.isRequired,
+  handleChange: PropTypes.func,
+  submitInfo: PropTypes.func
 }
 
 export default ProfileForm;

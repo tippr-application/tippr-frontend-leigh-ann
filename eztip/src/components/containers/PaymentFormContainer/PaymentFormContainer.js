@@ -1,4 +1,3 @@
-// have boolean flag for getting paymentSuccessful state key as true to display success message
 import React from "react";
 import { PaymentForm } from "../../presentational/PaymentForm";
 import PropTypes from 'prop-types';

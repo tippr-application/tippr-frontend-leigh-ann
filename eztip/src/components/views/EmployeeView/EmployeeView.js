@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { Employee } from '../../presentational/Employee';
 import { ProfileFormContainer } from '../../containers/ProfileFormContainer';
@@ -23,7 +22,7 @@ class EmployeeView extends React.Component {
         return (
             <div>
                 <Employee />
-                <ProfileFormContainer />
+                <ProfileFormContainer history={this.props.history} />
             </div>
         )
     }
@@ -33,5 +32,21 @@ class EmployeeView extends React.Component {
 const mapStateToProps = state => ({
     userInfo: state.userReducer.userInfo
 });
+
+EmployeeView.propTypes = {
+    userInfo: PropTypes.shape({
+        first_name: PropTypes.string,
+        last_name: PropTypes.string,
+        id: PropTypes.number,
+        tagline: PropTypes.string,
+        profile_photo: PropTypes.string,
+        type_id: PropTypes.number,
+        user_type: PropTypes.string,
+        username: PropTypes.string,
+        working_since: PropTypes.string
+    }),
+    match: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+}
 
 export default connect(mapStateToProps)(EmployeeView);
