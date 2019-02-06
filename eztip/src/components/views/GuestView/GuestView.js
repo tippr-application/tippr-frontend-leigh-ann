@@ -6,9 +6,12 @@ import { EmployeeListContainer } from '../../containers/EmployeeListContainer';
 import { EmployeeCard } from '../../presentational/Employee';
 import { PaymentFormContainer } from '../../containers/PaymentFormContainer';
 
+import PropTypes from 'prop-types';
+
 const GuestView = props => {
-    console.log(props);
+
     const users = props.users;
+    
     return (
         <div>
             <h1>Guest</h1>
@@ -23,5 +26,23 @@ const GuestView = props => {
 const mapStateToProps = state => ({
     users: state.userReducer.users
 });
+
+GuestView.propTypes = {
+    users: PropTypes.arrayOf(
+        PropTypes.shape({
+            first_name: PropTypes.string,
+            last_name: PropTypes.string,
+            id: PropTypes.number,
+            tagline: PropTypes.string,
+            profile_photo: PropTypes.string,
+            type_id: PropTypes.number,
+            user_type: PropTypes.string,
+            username: PropTypes.string,
+            working_since: PropTypes.string
+        })
+    ),
+    match: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+}
 
 export default connect(mapStateToProps)(GuestView);

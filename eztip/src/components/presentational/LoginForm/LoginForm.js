@@ -1,6 +1,7 @@
 import React from "react";
 import { login } from "../../../store/actions";
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 
 class LoginForm extends React.Component {
   state = {
@@ -49,6 +50,11 @@ class LoginForm extends React.Component {
       </div>
     );
   }
+}
+
+LoginForm.propTypes = {
+  history: PropTypes.object.isRequired,
+  login: PropTypes.func.isRequired
 }
 
 export default connect(

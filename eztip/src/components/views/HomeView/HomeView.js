@@ -7,11 +7,12 @@ import { Navigation } from "../../presentational/Navigation";
 
 import { connect } from "react-redux";
 import { getEmployees } from "../../../store/actions";
+import PropTypes from 'prop-types';
 
 class HomeView extends React.Component {
+
   componentDidMount() {
     this.props.getEmployees();
-    console.log(this.props);
     this.props.userType === "employee"
       ? this.props.history.push("/welcome/employee")
       : this.props.history.push("/welcome/guest");
@@ -39,6 +40,12 @@ const mapStateToProps = state => ({
   users: state.userReducer.users,
   userType: state.userReducer.userType
 });
+
+HomeView.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  getEmployees: PropTypes.func.isRequired
+}
 
 export default connect(
   mapStateToProps,

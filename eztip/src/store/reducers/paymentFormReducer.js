@@ -1,4 +1,9 @@
 // import { } from '../types';
+import {
+    SUBMIT_PAYMENT_INIT,
+    SUBMIT_PAYMENT_SUCCESS,
+    SUBMIT_PAYMENT_FAILURE
+} from '../types';
 
 const initialState = {
 

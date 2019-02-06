@@ -8,7 +8,10 @@ import {
   GET_EMPLOYEES_FAILURE,
   LOGIN_INIT,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE
+  LOGIN_FAILURE,
+  SUBMIT_PAYMENT_INIT,
+  SUBMIT_PAYMENT_SUCCESS,
+  SUBMIT_PAYMENT_FAILURE
 } from "../types";
 
 export const getEmployees = () => dispatch => {
@@ -40,8 +43,6 @@ export const getProfileById = id => dispatch => {
 
 export const login = loginInfo => dispatch => {
   dispatch({ type: LOGIN_INIT });
-  // const token = localStorage.getItem("token");
-  // const reqOptions = { headers: { authorization: token } };
   axios
     .post('https://eztip.herokuapp.com/login', loginInfo)
     .then(res => {
@@ -50,4 +51,12 @@ export const login = loginInfo => dispatch => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data })
     })
     .catch(err => dispatch({ type: LOGIN_FAILURE, payload: err.data }));
+}
+
+export const submitPayment = (id, payment) => dispatch => {
+  dispatch({ type: SUBMIT_PAYMENT_INIT });
+  axios
+    .post(`https://eztip.herokuapp.com/tips/${id}`, payment)
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err));
 }

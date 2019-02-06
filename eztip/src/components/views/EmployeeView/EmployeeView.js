@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Route } from 'react-router';
-// import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { Employee } from '../../presentational/Employee';
-import { ProfileForm } from '../../presentational/ProfileForm';
+import { ProfileFormContainer } from '../../containers/ProfileFormContainer';
+
 
 // import { getProfileById } from '../../../store/actions';
 
@@ -21,21 +22,16 @@ class EmployeeView extends React.Component {
     render() {
         return (
             <div>
-                {/* <Employee users={this.props.users} />
-                <Link to="/employee/:id/create"><button>Create Profile</button></Link>
-                <Route exact path="/employee/:id/create" component={ProfileForm} /> */}
-                EmployeeView
+                <Employee />
+                <ProfileFormContainer />
             </div>
         )
     }
 
 }
 
-// const mapStateToProps = state => ({
-//     userInfo: state.userReducer.userInfo
-// });
+const mapStateToProps = state => ({
+    userInfo: state.userReducer.userInfo
+});
 
-
-// export default connect(mapStateToProps, { getProfileById })(EmployeeView);
-
-export default EmployeeView;
+export default connect(mapStateToProps)(EmployeeView);
