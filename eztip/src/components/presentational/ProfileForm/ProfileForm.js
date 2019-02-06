@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createInfo, updateInfo, updateProfilePhoto } from "../../../store/actions";
+import { updateInfo, updateProfilePhoto } from "../../../store/actions";
 import PropTypes from "prop-types";
 
 class ProfileForm extends React.Component {
@@ -137,5 +137,5 @@ ProfileForm.propTypes = {
 
 export default connect(
   mapStateToProps,
-  { createInfo, updateInfo, updateProfilePhoto }
+  { updateInfo, updateProfilePhoto }
 )(ProfileForm);

@@ -4,17 +4,21 @@ import { CreateUsernameForm } from '../../presentational/CreateUsernameForm';
 import { CreateProfileForm } from '../../presentational/CreateProfileForm';
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 
-const LoginView = props => {
-    return (
-        <div>
-            <Route exact path="/" render={props => <LoginForm {...props} /> } />
-            <Route path="/signup" render={props => <CreateUsernameForm {...props} />} />
-            <Route path="/signup/createprofile" render={props => <CreateProfileForm {...props} />} />
+class LoginView extends React.Component {
+    render() {
+        return (
+            <div>
+                <Route exact path="/" render={props => <LoginForm {...props} /> } />
+                {this.props.userRegistered ? (
+                    <Route path="/signup" render={props => <CreateProfileForm {...props} />} />
+                    ) : ( <Route path="/signup" render={props => <CreateUsernameForm {...props} />} />
+                )}
+            </div>
+        )
+    }
 
-
-        </div>
-    )
 }
 
 LoginView.propTypes = {
@@ -22,4 +26,8 @@ LoginView.propTypes = {
     history: PropTypes.object.isRequired
 }
 
-export default LoginView;
+const mapStateToProps = state => ({
+    userRegistered: state.userReducer.userRegistered
+})
+
+export default connect(mapStateToProps)(LoginView);

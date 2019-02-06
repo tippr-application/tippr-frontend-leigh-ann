@@ -7,7 +7,13 @@ import {
   LOGIN_FAILURE,
   UPDATE_PHOTO_INIT,
   UPDATE_PHOTO_SUCCESS,
-  UPDATE_PHOTO_FAILURE
+  UPDATE_PHOTO_FAILURE,
+  REGISTER_INIT,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+  CREATE_PROFILE_INFO_FAILURE,
+  CREATE_PROFILE_INFO_INIT,
+  CREATE_PROFILE_INFO_SUCCESS
 } from "../types";
 
 const initialState = {
@@ -17,6 +23,14 @@ const initialState = {
   isloggingIn: false,
   loggedIn: false,
   isfetchingInfo: false,
+  isRegisteringUser: false,
+  registeredUsername: "",
+  registeredUserId: null,
+  userRegistered: false,
+  isCreatingProfile: false,
+  profileCreated: false,
+  isUpdatingProfile: false,
+  profileUpdated: false,
   userInfo: {},
   loggedInUsername: "",
   loggedInUserId: "",
@@ -103,6 +117,32 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.payload
+      };
+      case REGISTER_INIT:
+      return {
+        ...state,
+        isRegisteringUser: true,
+        error: ""
+      };
+      case REGISTER_SUCCESS:
+      return {
+        ...state,
+        isRegisteringUser: false,
+        userRegistered: true,
+        registeredUsername: action.payload.username,
+        registeredUserId: action.payload.userId
+      };
+      case CREATE_PROFILE_INFO_INIT:
+      return {
+        ...state,
+        isCreatingProfile: true,
+        error: ""
+      }
+      case CREATE_PROFILE_INFO_SUCCESS:
+      return {
+        ...state,
+        isCreatingProfile: false,
+        profileCreated: true
       }
     default:
       return state;

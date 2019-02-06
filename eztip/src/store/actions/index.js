@@ -17,7 +17,10 @@ import {
   CREATE_PROFILE_INFO_FAILURE,
   UPDATE_PHOTO_INIT,
   UPDATE_PHOTO_SUCCESS,
-  UPDATE_PHOTO_FAILURE
+  UPDATE_PHOTO_FAILURE,
+  REGISTER_INIT,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE
 } from "../types";
 
 export const getEmployees = () => dispatch => {
@@ -115,3 +118,13 @@ export const updateProfilePhoto = (id, fd) => dispatch => {
     })
     .catch(err => dispatch({ type: UPDATE_PHOTO_FAILURE, payload: err.data }));
 };
+
+export const registerUser = info => dispatch => {
+  dispatch({ type: REGISTER_INIT });
+  axios
+    .post("https://eztip.herokuapp.com/register", info)
+    .then(res => {
+      dispatch({ type: REGISTER_SUCCESS, payload: res.data })
+    })
+      .catch(err=> dispatch({ type: REGISTER_FAILURE, payload: err}));
+}
