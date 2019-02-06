@@ -1,7 +1,7 @@
 import {
-  GET_PROFILE_INFO_INIT,
-  GET_PROFILE_INFO_SUCCESS,
-  GET_PROFILE_INFO_FAILURE,
+  // GET_PROFILE_INFO_INIT,
+  // GET_PROFILE_INFO_SUCCESS,
+  // GET_PROFILE_INFO_FAILURE,
   GET_EMPLOYEES_INIT,
   GET_EMPLOYEES_SUCCESS,
   GET_EMPLOYEES_FAILURE,
@@ -13,33 +13,36 @@ import {
 const initialState = {
   users: [],
   isFetchingUsers: false,
-  isAUser: false,
+  userType: "",
   isloggingIn: false,
   loggedIn: false,
   isfetchingInfo: false,
   userInfo: {},
-  error: ""
+  loggedInUsername: "",
+  loggedInUserId: "",
+  error: "",
+  token: ""
 };
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_PROFILE_INFO_INIT:
-      return {
-        ...state,
-        isFetchingInfo: true,
-        error: ""
-      };
-    case GET_PROFILE_INFO_SUCCESS:
-      return {
-        ...state,
-        isFetchingInfo: false,
-        userInfo: action.payload
-      };
-    case GET_PROFILE_INFO_FAILURE:
-      return {
-        ...state,
-        error: action.payload
-      };
+    // case GET_PROFILE_INFO_INIT:
+    //   return {
+    //     ...state,
+    //     isFetchingInfo: true,
+    //     error: ""
+    //   };
+    // case GET_PROFILE_INFO_SUCCESS:
+    //   return {
+    //     ...state,
+    //     isFetchingInfo: false,
+    //     userInfo: action.payload
+    //   };
+    // case GET_PROFILE_INFO_FAILURE:
+    //   return {
+    //     ...state,
+    //     error: action.payload
+    //   };
     case GET_EMPLOYEES_INIT:
       return {
         ...state,
@@ -47,10 +50,16 @@ export const userReducer = (state = initialState, action) => {
         error: ""
       };
     case GET_EMPLOYEES_SUCCESS:
+    console.log(action.payload);
+    const userInfo = action.payload
+        .filter(user => user.username === state.loggedInUsername)
+        .pop();
+        console.log(userInfo);
       return {
         ...state,
         isFetchingUsers: false,
-        users: action.payload
+        users: action.payload,
+        userInfo: userInfo
       };
     case GET_EMPLOYEES_FAILURE:
       return {
@@ -61,13 +70,18 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggingIn: true,
-        error: ""
+        error: "",
+        userType: ""
       };
     case LOGIN_SUCCESS:
       return {
         ...state,
         isLoggingIn: false,
-        loggedIn: true
+        loggedIn: true,
+        userType: action.payload.user_type,
+        token: action.payload.token,
+        loggedInUsername: action.payload.username,
+        loggedInUserId: action.payload.userId
       };
     case LOGIN_FAILURE:
       return {

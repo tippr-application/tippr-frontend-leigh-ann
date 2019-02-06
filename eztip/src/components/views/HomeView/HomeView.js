@@ -1,43 +1,52 @@
-import React from 'react';
-import { Route } from 'react-router';
+import React from "react";
+import { Route } from "react-router";
 
-import { GuestView } from '../GuestView';
-import { EmployeeView } from '../EmployeeView';
-import { Navigation } from '../../presentational/Navigation';
+import { GuestView } from "../GuestView";
+import { EmployeeView } from "../EmployeeView";
+import { Navigation } from "../../presentational/Navigation";
 
-import { connect } from 'react-redux';
-import { getEmployees } from '../../../store/actions';
+import { connect } from "react-redux";
+import { getEmployees } from "../../../store/actions";
+import PropTypes from "prop-types";
 
 class HomeView extends React.Component {
+  componentDidMount() {
+    this.props.getEmployees();
+    // this.props.userType === "employee"
+    //   ? this.props.history.push("/welcome/employee")
+    //   : this.props.history.push("/welcome/guest");
+  }
 
-    // getEmployeeById = id => {
-    //     this.props.getProfileById(id);
-    // }
-
-    componentDidMount() {
-        this.props.getEmployees();
-        // get all users, not just employees
-    }
-
-    render() {
-        return (
-            <div>
-                <Navigation />
-                <h1>Welcome</h1>
-                {/* {this.props.isAUser} 
-                ? <Route exact path="/guest" component={GuestView} />
-                : <Route exact path="/employee/:id" render={props => <EmployeeView {...props} users={this.props.users} />} /> */}
-                {this.props.isAUser ? <GuestView /> : <EmployeeView users={this.props.users} />}
-            </div>
-        )
-    }
-
+  render() {
+    return (
+      <div>
+        <Navigation />
+        <h1>Welcome</h1>
+        {this.props.userType === "employee" ? (
+          <Route path="/" render={props => <EmployeeView {...props} />} />
+        ) : (
+          <Route
+            path="/"
+            render={props => <GuestView {...props} />}
+          />
+        )}
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => ({
-    users: state.userReducer.users,
-    isAUser: state.userReducer.isAUser
-    
+  users: state.userReducer.users,
+  userType: state.userReducer.userType
 });
 
-export default connect(mapStateToProps, { getEmployees })(HomeView);
+HomeView.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  getEmployees: PropTypes.func.isRequired
+};
+
+export default connect(
+  mapStateToProps,
+  { getEmployees }
+)(HomeView);
