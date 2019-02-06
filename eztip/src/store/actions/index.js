@@ -17,7 +17,10 @@ import {
   UPDATE_PROFILE_INFO_FAILURE,
   CREATE_PROFILE_INFO_INIT,
   CREATE_PROFILE_INFO_SUCCESS,
-  CREATE_PROFILE_INFO_FAILURE
+  CREATE_PROFILE_INFO_FAILURE,
+  UPDATE_PHOTO_INIT,
+  UPDATE_PHOTO_SUCCESS,
+  UPDATE_PHOTO_FAILURE
 } from "../types";
 
 export const getEmployees = () => dispatch => {
@@ -84,6 +87,17 @@ export const updateInfo = (id, info) => dispatch => {
       dispatch({ type: UPDATE_PROFILE_INFO_SUCCESS, payload: res })
     })
     .catch(err => {
+      console.log("updateInfo", err);
       dispatch({ type: UPDATE_PROFILE_INFO_FAILURE, payload: err });
     });
+}
+
+export const updateProfilePhoto = (id, fd) => dispatch => {
+  dispatch({ type: UPDATE_PHOTO_INIT });
+  axios
+    .post(`https://eztip.herokuapp.com/workers/${id}/upload`, fd)
+    .then(res => {
+      dispatch({ type: UPDATE_PHOTO_SUCCESS, payload: res.data.data.imgUrl })
+    })
+    .catch(err => dispatch({ type: UPDATE_PHOTO_FAILURE, payload: err.data }));
 }

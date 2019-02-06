@@ -30,7 +30,7 @@ Employee.propTypes = {
         type_id: PropTypes.number,
         user_type: PropTypes.string,
         username: PropTypes.string,
-        working_since: PropTypes.number
+        working_since: PropTypes.string
     })
 }
 export default Employee;

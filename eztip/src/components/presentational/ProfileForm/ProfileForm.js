@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createInfo, updateInfo } from "../../../store/actions";
+import { createInfo, updateInfo, updateProfilePhoto } from "../../../store/actions";
 import PropTypes from "prop-types";
 
 class ProfileForm extends React.Component {
@@ -12,7 +12,8 @@ class ProfileForm extends React.Component {
       tagline: "",
       working_since: "",
       profile_photo: ""
-    }
+    },
+    selectedFile: null
   };
 
   componentDidMount() {
@@ -32,6 +33,11 @@ class ProfileForm extends React.Component {
 
   conditionalSubmit = e => {
     e.preventDefault();
+    const fd = new FormData();
+    fd.append("image", this.state.selectedFile);
+    if (this.state.selectedFile) {
+      this.props.updateProfilePhoto(this.state.userInfo.id, fd);
+    }
     this.props.updateInfo(this.state.userInfo.id, this.state.userInfo);
     this.props.history.push("/");
   };
@@ -124,5 +130,5 @@ ProfileForm.propTypes = {
 
 export default connect(
   mapStateToProps,
-  { createInfo, updateInfo }
+  { createInfo, updateInfo, updateProfilePhoto }
 )(ProfileForm);

@@ -2,7 +2,6 @@ import React from "react";
 import { HomeView } from "../../views/HomeView";
 import { LoginView } from "../../views/LoginView";
 import { connect } from "react-redux";
-import { Route } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const authenticate = HomeView => LoginView =>

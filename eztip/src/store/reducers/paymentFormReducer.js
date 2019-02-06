@@ -1,4 +1,3 @@
-// import { } from '../types';
 import {
     SUBMIT_PAYMENT_INIT,
     SUBMIT_PAYMENT_SUCCESS,
