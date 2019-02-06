@@ -13,16 +13,16 @@ const EmployeeCard = props => {
 
   const payTip = e => {
     e.preventDefault();
-    props.history.push(`/welcome/guest/${employee.id}/tip`);
+    props.history.push(`/employee/${employee.id}/tip`);
   };
 
   const goBack = e => {
     e.preventDefault();
-    props.history.push("/welcome/guest");
+    props.history.push("/");
   };
 
   return (
-    <Link to={`/welcome/guest/${employee.id}`}>
+    <Link to={`/employee/${employee.id}`}>
       <h2>
         {employee.first_name} {employee.last_name}
       </h2>

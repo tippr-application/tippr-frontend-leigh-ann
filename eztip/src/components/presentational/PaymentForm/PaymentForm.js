@@ -25,7 +25,7 @@ class PaymentForm extends React.Component {
 
   cancel = e => {
       e.preventDefault();
-      this.state.history.push(`/welcome/guest/${this.state.id}`);
+      this.state.history.push(`/employee/${this.state.id}`);
   }
 
   submitPayment = e => {
