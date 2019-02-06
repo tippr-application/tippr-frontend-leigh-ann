@@ -12,9 +12,6 @@ import PropTypes from "prop-types";
 class HomeView extends React.Component {
   componentDidMount() {
     this.props.getEmployees();
-    // this.props.userType === "employee"
-    //   ? this.props.history.push("/welcome/employee")
-    //   : this.props.history.push("/welcome/guest");
   }
 
   render() {
