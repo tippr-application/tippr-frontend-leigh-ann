@@ -24,6 +24,7 @@ class ProfileForm extends React.Component {
 
   handleChange = e => {
     this.setState({
+      ...this.state,
       userInfo: {
         ...this.state.userInfo,
         [e.target.name]: e.target.value

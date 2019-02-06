@@ -1,6 +1,6 @@
 import React from "react";
-import { createInfo } from "../../../store/actions";
-import { connect, updateProfilePhoto } from "react-redux";
+import { createInfo, updateProfilePhoto } from "../../../store/actions";
+import { connect } from "react-redux";
 
 class CreateProfileForm extends React.Component {
   state = {
@@ -10,13 +10,16 @@ class CreateProfileForm extends React.Component {
       occupation: "",
       tagline: "",
       working_since: "",
-      profile_photo: ""
+      profile_photo: "",
+      username: null,
+      id: null
     },
     selectedFile: null
   };
 
   componentDidMount() {
       this.setState({
+          ...this.state,
           userInfo: {
               ...this.state.userInfo,
               username: this.props.registeredUsername,
@@ -43,7 +46,13 @@ class CreateProfileForm extends React.Component {
 
   createProfile = e => {
       e.preventDefault();
-      this.props.createInfo(this.state.userInfo.id)
+      const fd = new FormData();
+    fd.append("image", this.state.selectedFile);
+    if (this.state.selectedFile) {
+      this.props.updateProfilePhoto(this.state.userInfo.id, fd);
+    }
+    this.props.createInfo(this.state.userInfo);
+    this.props.history.push("/");
   }
 
   render() {
@@ -101,7 +110,6 @@ class CreateProfileForm extends React.Component {
                 onChange={this.handleChange}
               />
               <input
-                required
                 autoComplete="off"
                 type="file"
                 name="profile_photo"
@@ -122,6 +130,6 @@ const mapStateToProps = state => ({
 })
 
 export default connect(
-  null,
+  mapStateToProps,
   { createInfo, updateProfilePhoto }
 )(CreateProfileForm);

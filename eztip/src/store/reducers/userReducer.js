@@ -88,6 +88,7 @@ export const userReducer = (state = initialState, action) => {
         userType: ""
       };
     case LOGIN_SUCCESS:
+      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         isLoggingIn: false,
@@ -125,12 +126,19 @@ export const userReducer = (state = initialState, action) => {
         error: ""
       };
       case REGISTER_SUCCESS:
+      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         isRegisteringUser: false,
         userRegistered: true,
         registeredUsername: action.payload.username,
         registeredUserId: action.payload.userId
+      };
+      case REGISTER_FAILURE:
+      return {
+        ...state,
+        isRegisteringUser: false,
+        error: action.payload
       };
       case CREATE_PROFILE_INFO_INIT:
       return {
@@ -143,6 +151,12 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         isCreatingProfile: false,
         profileCreated: true
+      };
+      case CREATE_PROFILE_INFO_FAILURE:
+      return {
+        ...state,
+        isCreatingProfile: false,
+        error: action.payload
       }
     default:
       return state;

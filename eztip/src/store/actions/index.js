@@ -55,7 +55,6 @@ export const login = loginInfo => dispatch => {
   axios
     .post("https://eztip.herokuapp.com/login", loginInfo)
     .then(res => {
-      localStorage.setItem("token", res.data.token);
       console.log(res.data);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
@@ -79,8 +78,10 @@ export const submitPayment = info => dispatch => {
 
 export const createInfo = info => dispatch => {
   dispatch({ type: CREATE_PROFILE_INFO_INIT });
+  const userToken = localStorage.getItem("token");
+  const reqOptions = { headers: { authorization: userToken } };
   axios
-    .post(`https://eztip.herokuapp.com/workers`, info)
+    .post(`https://eztip.herokuapp.com/workers`, info, reqOptions)
     .then(res => {
       console.log(res.data);
       dispatch({ type: CREATE_PROFILE_INFO_SUCCESS, payload: res.data });
