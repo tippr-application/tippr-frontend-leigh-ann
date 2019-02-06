@@ -5,12 +5,19 @@ import { Route } from "react-router-dom";
 
 import { Employee } from "../../presentational/Employee";
 import { ProfileFormContainer } from "../../containers/ProfileFormContainer";
+import styled from 'styled-components';
+
+const EmployeeViewContainer = styled.div`
+max-width: 1200px;
+width: 100%;
+margin: 0 auto;
+`;
 
 const EmployeeView = props => {
   console.log("EmployeeView", props);
 
   return (
-    <div>
+    <EmployeeViewContainer>
       <Route
         exact
         path="/"
@@ -28,7 +35,7 @@ const EmployeeView = props => {
           />
         )}
       />
-    </div>
+    </EmployeeViewContainer>
   );
 };
 

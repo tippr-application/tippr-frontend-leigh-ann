@@ -22,6 +22,9 @@ export const Global = css`
   h1 {
     font-size: 3.8rem;
   }
+  h2 {
+    font-size: 2.4rem;
+  }
   h4 {
     font-size: 1.6rem;
     font-weight: 300;

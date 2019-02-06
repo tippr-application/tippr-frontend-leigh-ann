@@ -1,22 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const EmployeeProfileDiv = styled.div`
+width: 600px;
+border: 1px solid red;
+margin-top: 100px;
+`;
 
 const Employee = props => {
-    console.log("Employee", props)
-
     const routeToUpdateForm = e => {
         e.preventDefault();
         props.history.push("/form")
     }
 
     return (
-        <div>
-            <h1>{props.userInfo.first_name} {props.userInfo.last_name}</h1>
+        <EmployeeProfileDiv>
+            <h1>Welcome, {props.userInfo.first_name} {props.userInfo.last_name}</h1>
             <p>{props.userInfo.tagline}</p>
             <img alt={`${props.userInfo.first_name} ${props.userInfo.last_name}`} src={props.userInfo.profile_photo}></img>
             <p>Employee since {props.userInfo.working_since}</p>
             <button onClick={e=> routeToUpdateForm(e)}>Update</button>
-        </div>
+        </EmployeeProfileDiv>
     )
 }
 

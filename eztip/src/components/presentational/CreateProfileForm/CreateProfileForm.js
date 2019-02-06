@@ -1,6 +1,52 @@
 import React from "react";
 import { createInfo, updateProfilePhoto } from "../../../store/actions";
 import { connect } from "react-redux";
+import styled from 'styled-components';
+
+const ProfileFormContainer = styled.div`
+border: 1px solid #b5b5b5;
+margin: 0 auto;
+margin-top: 15vh;
+max-width: 600px;
+width: 100%;
+display: flex;
+flex-direction: column
+justify-content: center;
+align-items: center;
+padding: 40px;
+
+h1 {
+  margin-bottom: 40px;
+}
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  width: 80%;
+
+  input {
+    margin-bottom: 20px;
+
+    &:last-of-type {
+      padding-top: 8px;
+    }
+  }
+
+`;
+
+const ButtonDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 45%;
+  }
+`;
 
 class CreateProfileForm extends React.Component {
   state = {
@@ -57,9 +103,9 @@ class CreateProfileForm extends React.Component {
 
   render() {
     return (
-      <div>
-        CreateProfileForm
-        <form 
+      <ProfileFormContainer>
+        <h1>Create Profile</h1>
+        <Form 
               onSubmit={e=>this.createProfile(e)}
               method={"Post"}
               encType="multipart/form-data"
@@ -115,11 +161,13 @@ class CreateProfileForm extends React.Component {
                 name="profile_photo"
                 onChange={this.handleFile}
               />
+              <ButtonDiv>
               <button type="submit">
                 Create Profile
               </button>
-              </form>
-      </div>
+              </ButtonDiv>
+              </Form>
+      </ProfileFormContainer>
     );
   }
 }
