@@ -29,7 +29,7 @@ export const getEmployees = () => dispatch => {
   const userToken = localStorage.getItem("token");
   const reqOptions = { headers: { authorization: userToken } };
   axios
-    .get(`http://localhost:5000/workers`, reqOptions)
+    .get(`https://eztip.herokuapp.com/workers`, reqOptions)
     .then(res => {
       dispatch({ type: GET_EMPLOYEES_SUCCESS, payload: res.data });
     })
@@ -41,7 +41,7 @@ export const getEmployees = () => dispatch => {
 export const login = loginInfo => dispatch => {
   dispatch({ type: LOGIN_INIT });
   axios
-    .post("http://localhost:5000/login", loginInfo)
+    .post("https://eztip.herokuapp.com/login", loginInfo)
     .then(res => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
@@ -59,7 +59,7 @@ export const submitPayment = info => dispatch => {
   const userToken = localStorage.getItem("token");
   const reqOptions = { headers: { authorization: userToken } };
   axios
-    .post(`http://localhost:5000/tips/`, info, reqOptions)
+    .post(`https://eztip.herokuapp.com/tips/`, info, reqOptions)
     .then(res => {
       console.log(res.data);
       // dispatch({ type: SUBMIT_PAYMENT_SUCCESS, payload: res.data });
@@ -74,7 +74,7 @@ export const createInfo = info => dispatch => {
   const userToken = localStorage.getItem("token");
   const reqOptions = { headers: { authorization: userToken } };
   axios
-    .post(`http://localhost:5000/workers`, info, reqOptions)
+    .post(`https://eztip.herokuapp.com/workers`, info, reqOptions)
     .then(res => {
       dispatch({ type: CREATE_PROFILE_INFO_SUCCESS, payload: res.data });
     })
@@ -88,7 +88,7 @@ export const updateInfo = (id, info) => dispatch => {
   const userToken = localStorage.getItem("token");
   const reqOptions = { headers: { authorization: userToken } };
   axios
-    .put(`http://localhost:5000/workers/${id}`, info, reqOptions)
+    .put(`https://eztip.herokuapp.com/workers/${id}`, info, reqOptions)
     .then(res => {
       dispatch({ type: UPDATE_PROFILE_INFO_SUCCESS, payload: res.data });
     })
@@ -102,7 +102,7 @@ export const updateProfilePhoto = (id, fd) => dispatch => {
   const userToken = localStorage.getItem("token");
   const reqOptions = { headers: { authorization: userToken } };
   axios
-    .post(`http://localhost:5000/workers/${id}/upload`, fd, reqOptions)
+    .post(`https://eztip.herokuapp.com/workers/${id}/upload`, fd, reqOptions)
     .then(res => {
       dispatch({ type: UPDATE_PHOTO_SUCCESS, payload: res.data.data.imgUrl });
     })
@@ -112,7 +112,7 @@ export const updateProfilePhoto = (id, fd) => dispatch => {
 export const registerUser = info => dispatch => {
   dispatch({ type: REGISTER_INIT });
   axios
-    .post("http://localhost:5000/register", info)
+    .post("https://eztip.herokuapp.com/register", info)
     .then(res => {
       dispatch({ type: REGISTER_SUCCESS, payload: res.data })
     })

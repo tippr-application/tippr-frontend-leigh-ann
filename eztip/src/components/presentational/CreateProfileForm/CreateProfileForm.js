@@ -72,7 +72,8 @@ class CreateProfileForm extends React.Component {
           userInfo: {
               ...this.state.userInfo,
               username: this.props.registeredUsername,
-              id: this.props.registeredUserId
+              id: this.props.registeredUserId,
+              user_type: this.props.userType
               
           }
       })
@@ -177,7 +178,8 @@ class CreateProfileForm extends React.Component {
 
 const mapStateToProps = state => ({
     registeredUsername: state.userReducer.registeredUsername,
-    registeredUserId: state.userReducer.registeredUserId
+    registeredUserId: state.userReducer.registeredUserId,
+    userType: state.userReducer.userType
 })
 
 CreateProfileForm.propTypes = {

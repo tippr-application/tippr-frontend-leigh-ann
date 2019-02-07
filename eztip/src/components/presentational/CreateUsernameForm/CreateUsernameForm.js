@@ -63,7 +63,7 @@ class CreateUsernameForm extends React.Component {
     this.props.registerUser({
       username: this.state.username,
       password: this.state.password,
-      user_type: ""
+      user_type: this.state.user_type
     });
   };
 

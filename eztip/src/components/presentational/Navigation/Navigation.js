@@ -85,6 +85,19 @@ h2 {
     }
 }
 
+a {
+    color: black;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+a.active {
+    text-decoration: underline;
+}
+
 @media (max-width: 525px) {
     width: 100%;
     justify-content: center;
@@ -102,14 +115,14 @@ const Navigation = props => {
     return (
         <NavigationContainer>
             <NavigationDiv>
-            <LogoDiv>
-            <h1>EZTIP</h1>
-            </LogoDiv>
-            <NavLinkDiv>
-            <NavLink to="/"><h2>Home</h2></NavLink>
-            {props.userType === "employee" ? <NavLink to="/form"><h2>Update Profile</h2></NavLink> : null}
-            <h2 onClick={e=> logout(e)}>Sign Out</h2>
-            </NavLinkDiv>
+                <LogoDiv>
+                    <h1>EZTIP</h1>
+                </LogoDiv>
+                <NavLinkDiv>
+                    <NavLink to="/"><h2>Home</h2></NavLink>
+                    {props.userType === "employee" ? <NavLink to="/form"><h2>Update Profile</h2></NavLink> : null}
+                    <h2 onClick={e=> logout(e)}>Sign Out</h2>
+                </NavLinkDiv>
             </NavigationDiv>
         </NavigationContainer>
     );
