@@ -19,6 +19,7 @@ export const Global = css`
   }
   html {
     font-size: 62.5%;
+    background: #f1f1f1;
   }
   input {
     -webkit-appearance: none;

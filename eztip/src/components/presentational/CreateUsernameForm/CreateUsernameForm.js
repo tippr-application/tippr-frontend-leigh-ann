@@ -46,7 +46,8 @@ const ButtonDiv = styled.div`
 class CreateUsernameForm extends React.Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    user_type: ""
   };
 
   inputChange = e => {

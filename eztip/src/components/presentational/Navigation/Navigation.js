@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { logout } from '../../../store/actions';
@@ -104,8 +105,8 @@ const Navigation = props => {
             <h1>EZTIP</h1>
             </LogoDiv>
             <NavLinkDiv>
-            <h2>Home</h2>
-            {props.userType === "employee" ? <h2>Update Profile</h2> : <h2>Pay Tip</h2>}
+            <NavLink to="/"><h2>Home</h2></NavLink>
+            {props.userType === "employee" ? <NavLink to="/form"><h2>Update Profile</h2></NavLink> : null}
             <h2 onClick={e=> logout(e)}>Sign Out</h2>
             </NavLinkDiv>
             </NavigationDiv>

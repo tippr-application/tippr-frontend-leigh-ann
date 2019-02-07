@@ -82,7 +82,7 @@ class CreateProfileForm extends React.Component {
         ...this.state.userInfo,
         [e.target.name]: e.target.value
       }
-    }, console.log(e.target.value));
+    });
   };
 
   handleFile = e => {

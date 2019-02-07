@@ -61,7 +61,8 @@ export const submitPayment = info => dispatch => {
   axios
     .post(`https://eztip.herokuapp.com/tips/`, info, reqOptions)
     .then(res => {
-      dispatch({ type: SUBMIT_PAYMENT_SUCCESS, payload: res.data });
+      console.log(res.data);
+      // dispatch({ type: SUBMIT_PAYMENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: SUBMIT_PAYMENT_FAILURE, payload: err });
