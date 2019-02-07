@@ -20,7 +20,8 @@ import {
   UPDATE_PHOTO_FAILURE,
   REGISTER_INIT,
   REGISTER_SUCCESS,
-  REGISTER_FAILURE
+  REGISTER_FAILURE,
+  LOGOUT
 } from "../types";
 
 export const getEmployees = () => dispatch => {
@@ -46,6 +47,12 @@ export const login = loginInfo => dispatch => {
     })
     .catch(err => dispatch({ type: LOGIN_FAILURE, payload: err.data }));
 };
+
+export const logout = () => {
+ return {
+   type: LOGOUT
+ }
+}
 
 export const submitPayment = info => dispatch => {
   dispatch({ type: SUBMIT_PAYMENT_INIT });
