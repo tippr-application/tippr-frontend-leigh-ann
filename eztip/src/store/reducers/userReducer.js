@@ -119,7 +119,6 @@ export const userReducer = (state = initialState, action) => {
         error: ""
       };
     case REGISTER_SUCCESS:
-    console.log(action.payload);
       localStorage.setItem("token", action.payload.token);
       return {
         ...state,
