@@ -20,7 +20,8 @@ import {
   UPDATE_PHOTO_FAILURE,
   REGISTER_INIT,
   REGISTER_SUCCESS,
-  REGISTER_FAILURE
+  REGISTER_FAILURE,
+  LOGOUT
 } from "../types";
 
 export const getEmployees = () => dispatch => {
@@ -37,29 +38,21 @@ export const getEmployees = () => dispatch => {
     });
 };
 
-// export const getProfileById = id => dispatch => {
-//   dispatch({ type: GET_PROFILE_INFO_INIT });
-//   axios
-//     .get(`https://eztip.herokuapp.com/workers/${id}`)
-//     .then(res => {
-//       console.log(res.data);
-//       dispatch({ type: GET_PROFILE_INFO_SUCCESS, payload: res.data });
-//     })
-//     .catch(err => {
-//       dispatch({ type: GET_PROFILE_INFO_FAILURE, payload: err.data });
-//     });
-// };
-
 export const login = loginInfo => dispatch => {
   dispatch({ type: LOGIN_INIT });
   axios
     .post("https://eztip.herokuapp.com/login", loginInfo)
     .then(res => {
-      console.log(res.data);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: LOGIN_FAILURE, payload: err.data }));
 };
+
+export const logout = () => {
+ return {
+   type: LOGOUT
+ }
+}
 
 export const submitPayment = info => dispatch => {
   dispatch({ type: SUBMIT_PAYMENT_INIT });
@@ -68,7 +61,6 @@ export const submitPayment = info => dispatch => {
   axios
     .post(`https://eztip.herokuapp.com/tips/`, info, reqOptions)
     .then(res => {
-      console.log(res.data);
       dispatch({ type: SUBMIT_PAYMENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -83,11 +75,9 @@ export const createInfo = info => dispatch => {
   axios
     .post(`https://eztip.herokuapp.com/workers`, info, reqOptions)
     .then(res => {
-      console.log(res.data);
       dispatch({ type: CREATE_PROFILE_INFO_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err);
       dispatch({ type: CREATE_PROFILE_INFO_FAILURE, payload: err });
     });
 };
@@ -99,11 +89,9 @@ export const updateInfo = (id, info) => dispatch => {
   axios
     .put(`https://eztip.herokuapp.com/workers/${id}`, info, reqOptions)
     .then(res => {
-      console.log("updateInfo", res);
-      dispatch({ type: UPDATE_PROFILE_INFO_SUCCESS, payload: res });
+      dispatch({ type: UPDATE_PROFILE_INFO_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log("updateInfo", err);
       dispatch({ type: UPDATE_PROFILE_INFO_FAILURE, payload: err });
     });
 };

@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { connect } from 'react-redux';
+import { logout } from '../../../store/actions';
+
 const NavigationContainer = styled.div`
 background: #43d9b8;
 height: 75px;
@@ -25,16 +28,24 @@ margin: 0 auto;
 `;
 
 const Navigation = props => {
+
+    function logout(e) {
+        e.preventDefault();
+        props.logout()
+        props.history.push("/");
+    }
+    
     return (
         <NavigationContainer>
             <NavigationDiv>
             <h2>Home</h2>
             <h2>Pay Tip</h2>
+            <button onClick={e=> logout(e)}>Sign Out</button>
             </NavigationDiv>
         </NavigationContainer>
     );
 }
 
-export default Navigation;
+export default connect(null, { logout })(Navigation);
 
 //for guest it should say "Pay Tip", for employee it should say "My Tips"

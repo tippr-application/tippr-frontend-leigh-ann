@@ -13,7 +13,11 @@ import {
   REGISTER_FAILURE,
   CREATE_PROFILE_INFO_FAILURE,
   CREATE_PROFILE_INFO_INIT,
-  CREATE_PROFILE_INFO_SUCCESS
+  CREATE_PROFILE_INFO_SUCCESS,
+  UPDATE_PROFILE_INFO_INIT,
+  UPDATE_PROFILE_INFO_SUCCESS,
+  UPDATE_PROFILE_INFO_FAILURE,
+  LOGOUT
 } from "../types";
 
 const initialState = {
@@ -47,11 +51,9 @@ export const userReducer = (state = initialState, action) => {
         error: ""
       };
     case GET_EMPLOYEES_SUCCESS:
-    console.log(action.payload);
-    const userInfo = action.payload
+      const userInfo = action.payload
         .filter(user => user.username === state.loggedInUsername)
         .pop();
-        console.log(userInfo);
       return {
         ...state,
         isFetchingUsers: false,
@@ -87,28 +89,31 @@ export const userReducer = (state = initialState, action) => {
         isLoggingIn: false,
         error: action.payload
       };
-      case UPDATE_PHOTO_INIT:
+    case UPDATE_PHOTO_INIT:
       return {
         ...state,
         error: ""
-      }
-      case UPDATE_PHOTO_SUCCESS:
+      };
+    case UPDATE_PHOTO_SUCCESS:
       return {
         ...state,
-        users: action.payload
+        userInfo: {
+          ...state.userInfo,
+          profile_photo: action.payload
+        }
       };
-      case UPDATE_PHOTO_FAILURE:
+    case UPDATE_PHOTO_FAILURE:
       return {
         ...state,
         error: action.payload
       };
-      case REGISTER_INIT:
+    case REGISTER_INIT:
       return {
         ...state,
         isRegisteringUser: true,
         error: ""
       };
-      case REGISTER_SUCCESS:
+    case REGISTER_SUCCESS:
       localStorage.setItem("token", action.payload.token);
       return {
         ...state,
@@ -117,30 +122,61 @@ export const userReducer = (state = initialState, action) => {
         registeredUsername: action.payload.username,
         registeredUserId: action.payload.userId
       };
-      case REGISTER_FAILURE:
+    case REGISTER_FAILURE:
       return {
         ...state,
         isRegisteringUser: false,
         error: action.payload
       };
-      case CREATE_PROFILE_INFO_INIT:
+    case CREATE_PROFILE_INFO_INIT:
       return {
         ...state,
         isCreatingProfile: true,
         error: ""
-      }
-      case CREATE_PROFILE_INFO_SUCCESS:
+      };
+    case CREATE_PROFILE_INFO_SUCCESS:
       return {
         ...state,
         isCreatingProfile: false,
         profileCreated: true
       };
-      case CREATE_PROFILE_INFO_FAILURE:
+    case CREATE_PROFILE_INFO_FAILURE:
       return {
         ...state,
         isCreatingProfile: false,
         error: action.payload
-      }
+      };
+    case UPDATE_PROFILE_INFO_INIT:
+      return {
+        ...state,
+        isUpdatingProfile: true,
+        error: ""
+      };
+    case UPDATE_PROFILE_INFO_SUCCESS:
+      return {
+        ...state,
+        isUpdatingProfile: false,
+        profileUpdated: true,
+        userInfo: action.payload
+      };
+    case UPDATE_PROFILE_INFO_FAILURE:
+      return {
+        ...state,
+        isUpdatingProfile: false,
+        error: action.payload
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        loggedIn: false,
+        userInfo: {},
+        loggedInUsername: "",
+        loggedInUserId: "",
+        error: "",
+        token: "",
+        users: [],
+        userType: ""
+      };
     default:
       return state;
   }

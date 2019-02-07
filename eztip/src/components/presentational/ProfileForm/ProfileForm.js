@@ -2,6 +2,47 @@ import React from "react";
 import { connect } from "react-redux";
 import { updateInfo, updateProfilePhoto } from "../../../store/actions";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
+const ProfileFormContainer = styled.div`
+border: 1px solid #b5b5b5;
+margin: 0 auto;
+margin-top: 20vh;
+max-width: 600px;
+width: 100%;
+display: flex;
+flex-direction: column
+justify-content: center;
+align-items: center;
+padding: 40px;
+
+h1 {
+  margin-bottom: 40px;
+}
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  width: 80%;
+
+  input {
+    margin-bottom: 20px;
+  }
+`;
+
+const ButtonDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 45%;
+  }
+`;
 
 class ProfileForm extends React.Component {
   state = {
@@ -35,8 +76,8 @@ class ProfileForm extends React.Component {
   handleFile = e => {
     this.setState({
       selectedFile: e.target.files[0]
-    })
-  }
+    });
+  };
 
   conditionalSubmit = e => {
     e.preventDefault();
@@ -56,9 +97,10 @@ class ProfileForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form 
-          onSubmit={e=>this.conditionalSubmit(e)}
+      <ProfileFormContainer>
+        <h1>Update Profile</h1>
+        <Form
+          onSubmit={e => this.conditionalSubmit(e)}
           method={this.props.loggedIn ? "Put" : "Post"}
           encType="multipart/form-data"
         >
@@ -113,14 +155,14 @@ class ProfileForm extends React.Component {
             name="profile_photo"
             onChange={this.handleFile}
           />
-          <button type="submit">
-            Save
-          </button>
-          <button type="button" onClick={e => this.routeBack(e)}>
-            Back
-          </button>
-        </form>
-      </div>
+          <ButtonDiv>
+            <button type="submit">Save</button>
+            <button type="button" onClick={e => this.routeBack(e)}>
+              Back
+            </button>
+          </ButtonDiv>
+        </Form>
+      </ProfileFormContainer>
     );
   }
 }
