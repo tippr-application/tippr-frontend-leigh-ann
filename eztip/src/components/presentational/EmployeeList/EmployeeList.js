@@ -3,7 +3,7 @@ import { EmployeeCard } from "../Employee";
 import PropTypes from "prop-types";
 
 const EmployeeList = props => {
-  console.log("EmployeeList", props);
+
   const employees = props.users.filter(user => user.user_type === "employee");
 
   return (

@@ -15,7 +15,6 @@ margin-top: 100px;
 `;
 
 const EmployeeView = props => {
-  console.log("EmployeeView", props);
 
   return (
     <EmployeeViewContainer>

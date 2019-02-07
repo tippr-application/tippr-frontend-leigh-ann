@@ -1,4 +1,17 @@
-import { css } from "styled-components";
+import { css, keyframes } from "styled-components";
+
+const hoverBtn = keyframes`
+0% {
+  color: black;
+  background: #43d9b8;
+  border: 1px solid #43d9b8;
+}
+100% {
+  color: #43d9b8;
+  background: white;
+  border: 1px solid #43d9b8;
+}
+`;
 
 export const Global = css`
   * {
@@ -75,9 +88,7 @@ export const Global = css`
     cursor: pointer;
 
     &:hover {
-      color: #43d9b8;
-      background: white;
-
+      animation: ${hoverBtn} 0.15s forwards;
     }
   }
   .App {

@@ -13,7 +13,10 @@ import {
   REGISTER_FAILURE,
   CREATE_PROFILE_INFO_FAILURE,
   CREATE_PROFILE_INFO_INIT,
-  CREATE_PROFILE_INFO_SUCCESS
+  CREATE_PROFILE_INFO_SUCCESS,
+  UPDATE_PROFILE_INFO_INIT,
+  UPDATE_PROFILE_INFO_SUCCESS,
+  UPDATE_PROFILE_INFO_FAILURE
 } from "../types";
 
 const initialState = {
@@ -47,11 +50,9 @@ export const userReducer = (state = initialState, action) => {
         error: ""
       };
     case GET_EMPLOYEES_SUCCESS:
-    console.log(action.payload);
     const userInfo = action.payload
         .filter(user => user.username === state.loggedInUsername)
         .pop();
-        console.log(userInfo);
       return {
         ...state,
         isFetchingUsers: false,
@@ -95,7 +96,10 @@ export const userReducer = (state = initialState, action) => {
       case UPDATE_PHOTO_SUCCESS:
       return {
         ...state,
-        users: action.payload
+        userInfo: {
+          ...state.userInfo,
+          profile_photo: action.payload
+        }
       };
       case UPDATE_PHOTO_FAILURE:
       return {
@@ -139,6 +143,25 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isCreatingProfile: false,
+        error: action.payload
+      };
+      case UPDATE_PROFILE_INFO_INIT:
+      return {
+        ...state,
+        isUpdatingProfile: true,
+        error: ""
+      };
+      case UPDATE_PROFILE_INFO_SUCCESS:
+      return {
+        ...state,
+        isUpdatingProfile: false,
+        profileUpdated: true,
+        userInfo: action.payload,
+      };
+      case UPDATE_PROFILE_INFO_FAILURE:
+      return {
+        ...state,
+        isUpdatingProfile: false,
         error: action.payload
       }
     default:

@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 
 const EmployeeCard = props => {
-  console.log("EmployeeCard", props);
 
   const employee = props.employee
     ? props.employee
