@@ -30,7 +30,7 @@ export const Global = css`
     font-family: "Raleway", sans-serif;
     font-weight: 700;
     margin-bottom: 10px;
-    text-transform: uppercase;
+    text-transform: capitalize;
   }
   h1 {
     font-size: 3.8rem;
@@ -82,7 +82,7 @@ export const Global = css`
     padding: 12px 16px;
     border: 1px solid #43d9b8;;
     border-radius: 3px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-family: "Raleway", sans-serif;
     outline: none;
     cursor: pointer;

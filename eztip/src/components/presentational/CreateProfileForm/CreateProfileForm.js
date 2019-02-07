@@ -58,7 +58,8 @@ class CreateProfileForm extends React.Component {
       working_since: "",
       profile_photo: "",
       username: null,
-      id: null
+      id: null,
+      user_type: ""
     },
     selectedFile: null
   };
@@ -81,7 +82,7 @@ class CreateProfileForm extends React.Component {
         ...this.state.userInfo,
         [e.target.name]: e.target.value
       }
-    });
+    }, console.log(e.target.value));
   };
 
   handleFile = e => {
