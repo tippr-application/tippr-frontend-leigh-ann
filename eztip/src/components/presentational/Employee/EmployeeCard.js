@@ -51,7 +51,10 @@ EmployeeCard.propTypes = {
     last_name: PropTypes.string,
     id: PropTypes.number,
     tagline: PropTypes.string,
-    profile_photo: PropTypes.string,
+        profile_photo: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
     type_id: PropTypes.number,
     user_type: PropTypes.string,
     username: PropTypes.string,

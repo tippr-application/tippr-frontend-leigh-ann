@@ -60,9 +60,10 @@ class CreateProfileForm extends React.Component {
       working_since: "",
       profile_photo: "",
       username: null,
-      id: null,
+      // id: null,
       user_type: ""
     },
+    id: null,
     selectedFile: null
   };
 
@@ -72,7 +73,7 @@ class CreateProfileForm extends React.Component {
           userInfo: {
               ...this.state.userInfo,
               username: this.props.registeredUsername,
-              id: this.props.registeredUserId,
+              // id: this.props.registeredUserId,
               user_type: this.props.userType
               
           }
@@ -99,7 +100,7 @@ class CreateProfileForm extends React.Component {
       const fd = new FormData();
     fd.append("image", this.state.selectedFile);
     if (this.state.selectedFile) {
-      this.props.updateProfilePhoto(this.state.userInfo.id, fd);
+      this.props.updateProfilePhoto(this.state.id, fd);
     }
     this.props.createInfo(this.state.userInfo);
     this.props.history.push("/");

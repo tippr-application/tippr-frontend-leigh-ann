@@ -116,7 +116,7 @@ const Navigation = props => {
         <NavigationContainer>
             <NavigationDiv>
                 <LogoDiv>
-                    <h1>EZTIP</h1>
+                    <h1>tippr</h1>
                 </LogoDiv>
                 <NavLinkDiv>
                     <NavLink to="/"><h2>Home</h2></NavLink>
