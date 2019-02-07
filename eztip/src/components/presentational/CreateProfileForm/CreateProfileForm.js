@@ -2,6 +2,7 @@ import React from "react";
 import { createInfo, updateProfilePhoto } from "../../../store/actions";
 import { connect } from "react-redux";
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const ProfileFormContainer = styled.div`
 border: 1px solid #b5b5b5;
@@ -14,6 +15,7 @@ flex-direction: column
 justify-content: center;
 align-items: center;
 padding: 40px;
+background: white;
 
 h1 {
   margin-bottom: 40px;
@@ -58,8 +60,10 @@ class CreateProfileForm extends React.Component {
       working_since: "",
       profile_photo: "",
       username: null,
-      id: null
+      // id: null,
+      user_type: ""
     },
+    id: null,
     selectedFile: null
   };
 
@@ -69,7 +73,8 @@ class CreateProfileForm extends React.Component {
           userInfo: {
               ...this.state.userInfo,
               username: this.props.registeredUsername,
-              id: this.props.registeredUserId
+              // id: this.props.registeredUserId,
+              user_type: this.props.userType
               
           }
       })
@@ -95,7 +100,7 @@ class CreateProfileForm extends React.Component {
       const fd = new FormData();
     fd.append("image", this.state.selectedFile);
     if (this.state.selectedFile) {
-      this.props.updateProfilePhoto(this.state.userInfo.id, fd);
+      this.props.updateProfilePhoto(this.state.id, fd);
     }
     this.props.createInfo(this.state.userInfo);
     this.props.history.push("/");
@@ -174,8 +179,19 @@ class CreateProfileForm extends React.Component {
 
 const mapStateToProps = state => ({
     registeredUsername: state.userReducer.registeredUsername,
-    registeredUserId: state.userReducer.registeredUserId
+    registeredUserId: state.userReducer.registeredUserId,
+    userType: state.userReducer.userType
 })
+
+CreateProfileForm.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  registeredUsername: PropTypes.string,
+  // registeredUserId: PropTypes.oneOfType({
+  //   PropTypes.string,
+  //   PropTypes.number
+  // })
+};
 
 export default connect(
   mapStateToProps,

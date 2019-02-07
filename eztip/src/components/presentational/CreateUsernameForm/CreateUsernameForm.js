@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { registerUser } from "../../../store/actions";
 import styled from "styled-components";
+import PropTypes from 'prop-types';
 
 const RegisterFormContainer = styled.div`
 border: 1px solid #b5b5b5;
@@ -14,6 +15,7 @@ flex-direction: column
 justify-content: center;
 align-items: center;
 padding: 40px;
+background: white;
 
 h1 {
   margin-bottom: 40px;
@@ -46,7 +48,8 @@ const ButtonDiv = styled.div`
 class CreateUsernameForm extends React.Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    user_type: ""
   };
 
   inputChange = e => {
@@ -59,7 +62,8 @@ class CreateUsernameForm extends React.Component {
     e.preventDefault();
     this.props.registerUser({
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
+      user_type: this.state.user_type
     });
   };
 
@@ -71,7 +75,7 @@ class CreateUsernameForm extends React.Component {
   render() {
     return (
       <RegisterFormContainer>
-        <h1>SIGN UP</h1>
+        <h1>Sign Up</h1>
         <Form onSubmit={e => this.registerUser(e)}>
           <input
             type="text"
@@ -87,6 +91,11 @@ class CreateUsernameForm extends React.Component {
             onChange={this.inputChange}
             placeholder="Create password"
           />
+                        <select required name="user_type" onChange={this.inputChange} defaultValue="">
+              <option disabled value="">Please select a profile type</option>
+                <option value="employee">Employee</option>
+                <option value="guest">Guest</option>
+              </select>
           <ButtonDiv>
             <button>Sign up</button>
             <button onClick={this.cancel} type="button">Cancel</button>
@@ -96,6 +105,11 @@ class CreateUsernameForm extends React.Component {
     );
   }
 }
+
+CreateUsernameForm.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
+};
 
 export default connect(
   null,
