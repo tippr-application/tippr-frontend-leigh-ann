@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { registerUser } from "../../../store/actions";
 import styled from "styled-components";
+import PropTypes from 'prop-types';
 
 const RegisterFormContainer = styled.div`
 border: 1px solid #b5b5b5;
@@ -14,6 +15,7 @@ flex-direction: column
 justify-content: center;
 align-items: center;
 padding: 40px;
+background: white;
 
 h1 {
   margin-bottom: 40px;
@@ -103,6 +105,11 @@ class CreateUsernameForm extends React.Component {
     );
   }
 }
+
+CreateUsernameForm.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
+};
 
 export default connect(
   null,

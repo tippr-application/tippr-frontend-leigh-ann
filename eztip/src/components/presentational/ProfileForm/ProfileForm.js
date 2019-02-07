@@ -15,6 +15,7 @@ flex-direction: column
 justify-content: center;
 align-items: center;
 padding: 40px;
+background: white;
 
 h1 {
   margin-bottom: 40px;

@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { logout } from '../../../store/actions';
+import PropTypes from 'prop-types';
 
 const NavigationContainer = styled.div`
 background: #43d9b8;
@@ -118,6 +119,10 @@ const mapStateToProps = state => ({
     userType: state.userReducer.userType
 });
 
-export default connect(mapStateToProps, { logout })(Navigation);
+Navigation.propTypes = {
+    history: PropTypes.object.isRequired,
+    logout: PropTypes.func.isRequired,
+    userType: PropTypes.string
+}
 
-//for guest it should say "Pay Tip", for employee it should say "My Tips"
+export default connect(mapStateToProps, { logout })(Navigation);

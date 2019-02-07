@@ -120,6 +120,8 @@ Employee.propTypes = {
       PropTypes.string,
       PropTypes.number
     ])
-  })
+  }),
+  history: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
 };
 export default Employee;

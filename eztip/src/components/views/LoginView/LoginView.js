@@ -29,7 +29,8 @@ class LoginView extends React.Component {
 
 LoginView.propTypes = {
   match: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  userRegistered: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({

@@ -2,6 +2,7 @@ import React from "react";
 import { createInfo, updateProfilePhoto } from "../../../store/actions";
 import { connect } from "react-redux";
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const ProfileFormContainer = styled.div`
 border: 1px solid #b5b5b5;
@@ -14,6 +15,7 @@ flex-direction: column
 justify-content: center;
 align-items: center;
 padding: 40px;
+background: white;
 
 h1 {
   margin-bottom: 40px;
@@ -177,6 +179,16 @@ const mapStateToProps = state => ({
     registeredUsername: state.userReducer.registeredUsername,
     registeredUserId: state.userReducer.registeredUserId
 })
+
+CreateProfileForm.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  registeredUsername: PropTypes.string,
+  // registeredUserId: PropTypes.oneOfType({
+  //   PropTypes.string,
+  //   PropTypes.number
+  // })
+};
 
 export default connect(
   mapStateToProps,
