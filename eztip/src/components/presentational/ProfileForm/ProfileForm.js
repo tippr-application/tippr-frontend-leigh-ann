@@ -23,6 +23,7 @@ box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
 
 @media (max-width: 700px ) {
   width: 85%;
+  margin-top: 10vh;
 }
 
 h2 {

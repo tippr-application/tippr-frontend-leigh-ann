@@ -7,6 +7,10 @@ import PropTypes from 'prop-types';
 const PageContainer = styled.div`
 margin: 0 auto;
 margin-top: 20vh;
+
+@media (max-width:500px) {
+  margin-top: 5vh;
+}
 `;
 
 const RegisterFormContainer = styled.div`

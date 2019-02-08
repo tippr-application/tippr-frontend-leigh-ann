@@ -13,6 +13,7 @@ justify-content: center;
 
 const H2Div = styled.h2`
 text-align: center;
+margin: 30px 15px 20px;
 `;
 
 const EmployeeList = props => {

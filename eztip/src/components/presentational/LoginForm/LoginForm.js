@@ -8,6 +8,10 @@ import styled from 'styled-components';
 const PageContainer = styled.div`
 margin: 0 auto;
 margin-top: 20vh;
+
+@media (max-width:500px) {
+  margin-top: 5vh;
+}
 `;
 
 const LoginFormContainer = styled.div`

@@ -11,18 +11,24 @@ margin-top: 10vh;
 max-width: 600px;
 width: 100%;
 display: flex;
-flex-direction: column
+flex-direction: column;
 justify-content: center;
 align-items: center;
 padding: 40px;
 background: white;
+-webkit-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
+-moz-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
+box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
+
 
 @media (max-width: 700px ) {
-  width: 85%;
+  width: 90%;
+  margin-top: 1vh;
 }
 
 h1 {
   margin-bottom: 40px;
+  font-size: 2.8rem;
 }
 `;
 

@@ -17,6 +17,11 @@ align-items: center;
 padding: 40px;
 background: white;
 
+@media (max-width: 700px ) {
+  width: 85%;
+  margin-top: 5vh;
+}
+
 h1 {
   margin-bottom: 40px;
 }

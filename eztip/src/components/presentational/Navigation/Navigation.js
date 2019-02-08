@@ -13,6 +13,7 @@ const NavigationContainer = styled.div`
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 2;
   -webkit-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.19);
   -moz-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.19);
   box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.19);
@@ -117,7 +118,7 @@ const Navigation = props => {
           <h1>tippr</h1>
         </LogoDiv>
         <NavLinkDiv>
-          <Link exact to="/">
+          <Link to="/">
             <h2>Home</h2>
           </Link>
           {props.userType === "employee" && (
