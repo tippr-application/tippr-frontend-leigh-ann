@@ -3,6 +3,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const CardDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  border: 1px dotted black;
+
+  img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+  }
+
+  h2 {
+    color: black;
+    font-size: 3rem;
+  }
+`;
+
 
 const EmployeeCard = props => {
 
@@ -22,10 +41,15 @@ const EmployeeCard = props => {
 
   return (
     <Link to={`/employee/${employee.id}`}>
+      <CardDiv>
+
+      <img src={employee.profile_photo} />
+      <div>
       <h2>
         {employee.first_name} {employee.last_name}
       </h2>
       <p>{employee.tagline}</p>
+      </div>
       <p>Working since {employee.working_since}</p>
       {!props.employee && (
         <div>
@@ -37,6 +61,8 @@ const EmployeeCard = props => {
           </button>
         </div>
       )}
+
+      </CardDiv>
     </Link>
   );
 };

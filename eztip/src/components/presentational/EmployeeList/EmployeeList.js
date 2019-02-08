@@ -1,6 +1,14 @@
 import React from "react";
 import { EmployeeCard } from "../Employee";
 import PropTypes from "prop-types";
+import styled from 'styled-components';
+
+const EmployeeListDiv = styled.div`
+display: flex;
+flex-wrap: wrap;
+max-width: 1200px;
+width: 100%;
+`;
 
 const EmployeeList = props => {
 
@@ -9,6 +17,7 @@ const EmployeeList = props => {
   return (
     <div>
       <h2>Which employee would you like to tip?</h2>
+      <EmployeeListDiv>
       {employees.map(employee => (
         <EmployeeCard
           employee={employee}
@@ -17,6 +26,7 @@ const EmployeeList = props => {
           history={props.history}
         />
       ))}
+      </EmployeeListDiv>
     </div>
   );
 };
