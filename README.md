@@ -2,7 +2,7 @@
 
 *tippr* is a digital tipping app. As a service employee, manage your tips from your phone or computer. As a patron, ensure that your tips go directly to the employee.
 
-This project was developed as part of Lambda School's Build Week.
+This project was developed as part of Lambda School's Build Week. Check it out on Netlify: [tippr](https://leigh-ann-tippr.netlify.com/)
 
 ## To contribute to this project:
 
@@ -11,3 +11,7 @@ This project was developed as part of Lambda School's Build Week.
 * Run `yarn install` to download dependences.
 * Once dependency download is complete, run `yarn start` to start the local server.
 * Push changes to your repo and submit a PR to this repo's master branch.
+
+## Author:
+
+Code written by [Leigh-Ann Friedel](https://github.com/lafriedel).
