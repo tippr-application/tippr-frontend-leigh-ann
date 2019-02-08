@@ -3,6 +3,40 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const CardDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 330px;
+  margin: 2.9%;
+  height: 380px;
+  background-color: white;
+  border-radius: 5px;
+
+  a {
+    text-align: center;
+    width: 70%;
+  }
+
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 25px;
+  }
+
+  h2 {
+    color: black;
+    font-size: 3rem;
+  }
+
+  .since {
+    margin-top: 25px;
+  }
+`;
+
 
 const EmployeeCard = props => {
 
@@ -21,12 +55,18 @@ const EmployeeCard = props => {
   };
 
   return (
+    <CardDiv>
     <Link to={`/employee/${employee.id}`}>
+
+
+      <img src={employee.profile_photo} />
+      <div>
       <h2>
         {employee.first_name} {employee.last_name}
       </h2>
-      <p>{employee.tagline}</p>
-      <p>Working since {employee.working_since}</p>
+      <p className="tagline">{employee.tagline}</p>
+      </div>
+      <p className="since">Working since {employee.working_since}</p>
       {!props.employee && (
         <div>
           <button type="button" onClick={payTip}>
@@ -37,7 +77,10 @@ const EmployeeCard = props => {
           </button>
         </div>
       )}
+
+
     </Link>
+    </CardDiv>
   );
 };
 
