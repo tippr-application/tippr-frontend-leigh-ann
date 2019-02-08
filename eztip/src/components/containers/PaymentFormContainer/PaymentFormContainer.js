@@ -8,7 +8,7 @@ const PaymentFormContainer = props => {
 
   return (
     <div>
-      <PaymentForm match={props.match} history={props.history} id={id} />
+      <PaymentForm users={props.users} match={props.match} history={props.history} id={id} />
     </div>
   );
 };
