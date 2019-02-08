@@ -23,6 +23,10 @@ const ProfileInfoContainer = styled.div`
   -webkit-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
   box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
+
+  h1 {
+    font-size: 2.8rem;
+  }
 `;
 
 const ProfileImgContainer = styled.div`
