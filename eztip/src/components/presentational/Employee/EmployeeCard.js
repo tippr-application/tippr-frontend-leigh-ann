@@ -18,12 +18,15 @@ const CardDiv = styled.div`
   a {
     text-align: center;
     width: 70%;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+    max-width: 150px;    
+    border-radius: 10px;
     margin-bottom: 25px;
   }
 
@@ -34,6 +37,10 @@ const CardDiv = styled.div`
 
   .since {
     margin-top: 25px;
+  }
+
+  button {
+    margin: 25px 5px;
   }
 `;
 

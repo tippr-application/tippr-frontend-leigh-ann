@@ -12,7 +12,9 @@ import styled from 'styled-components';
 const GuestViewContainer = styled.div`
 max-width: 1200px;
 width: 100%;
-margin: 0 auto;
+margin: 75px auto;
+display: flex;
+justify-content: center;
 `;
 
 
@@ -21,7 +23,7 @@ const GuestView = props => {
     const users = props.users;
     
     return (
-        <GuestViewContainer>
+        <GuestViewContainer>            
             <Route exact path="/" render={props => <EmployeeListContainer {...props} users={users} />} />
             <Route exact path="/employee/:id" render={props => <EmployeeCard {...props} />} />
             <Route path="/employee/:id/tip" render={props => <PaymentFormContainer {...props} users={users} /> } />

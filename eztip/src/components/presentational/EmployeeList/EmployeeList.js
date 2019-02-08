@@ -11,13 +11,17 @@ width: 100%;
 justify-content: center;
 `;
 
+const H2Div = styled.h2`
+text-align: center;
+`;
+
 const EmployeeList = props => {
 
   const employees = props.users.filter(user => user.user_type === "employee");
 
   return (
     <div>
-      <h2>Which employee would you like to tip?</h2>
+      <H2Div>Which employee would you like to tip?</H2Div>
       <EmployeeListDiv>
       {employees.map(employee => (
         <EmployeeCard
