@@ -18,6 +18,10 @@ align-items: center;
 padding: 40px;
 background: white;
 
+@media (max-width: 700px ) {
+  width: 85%;
+}
+
 h1 {
   margin-bottom: 40px;
 }
@@ -120,10 +124,6 @@ class LoginForm extends React.Component {
 LoginForm.propTypes = {
   history: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired
-}
-
-const mapStateToProps = state => {
-
 }
 
 export default connect(

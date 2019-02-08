@@ -71,7 +71,7 @@ button {
 
 const ProfileImg = styled.img`
   max-width: 300px;
-  border-radius: 50%;
+  border-radius: 10px;
 `;
 
 const Tagline = styled.p`

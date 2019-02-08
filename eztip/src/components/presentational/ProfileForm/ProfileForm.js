@@ -17,8 +17,13 @@ align-items: center;
 padding: 40px;
 background: white;
 
+@media (max-width: 700px ) {
+  width: 85%;
+}
+
 h1 {
   margin-bottom: 40px;
+  text-align: center;
 }
 `;
 

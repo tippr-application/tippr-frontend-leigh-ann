@@ -11,7 +11,7 @@ const CardDiv = styled.div`
   align-items: center;
   width: 330px;
   margin: 2.9%;
-  height: 380px;
+  padding: 30px 0;
   background-color: white;
   border-radius: 5px;
 
@@ -66,7 +66,7 @@ const EmployeeCard = props => {
     <Link to={`/employee/${employee.id}`}>
 
 
-      <img src={employee.profile_photo} />
+      <img src={employee.profile_photo} alt={employee.first_name} />
       <div>
       <h2>
         {employee.first_name} {employee.last_name}

@@ -7,7 +7,7 @@ import styled from "styled-components";
 const PaymentFormContainer = styled.div`
 border: 1px solid #b5b5b5;
 margin: 0 auto;
-margin-top: 20vh;
+margin-top: 10vh;
 max-width: 600px;
 width: 100%;
 display: flex;
@@ -16,6 +16,10 @@ justify-content: center;
 align-items: center;
 padding: 40px;
 background: white;
+
+@media (max-width: 700px ) {
+  width: 85%;
+}
 
 h1 {
   margin-bottom: 40px;

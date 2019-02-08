@@ -12,9 +12,13 @@ import styled from 'styled-components';
 const GuestViewContainer = styled.div`
 max-width: 1200px;
 width: 100%;
-margin: 75px auto;
+margin: 100px auto;
 display: flex;
 justify-content: center;
+
+@media (max-width: 525px) {
+    margin: 120px auto;
+}
 `;
 
 
