@@ -19,7 +19,7 @@ export const Global = css`
   }
   html {
     font-size: 62.5%;
-    background: #f1f1f1;
+    background: #f8f8f8;
   }
   input {
     -webkit-appearance: none;
@@ -64,7 +64,7 @@ export const Global = css`
   input {
     padding: 5px;
     font-size: 1.6rem;
-    background: #f1f1f1;
+    background: #f8f8f8;
     border: 1px solid #b5b5b5;
     color: black;
     margin-bottom: 10px;

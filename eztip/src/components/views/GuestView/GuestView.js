@@ -26,7 +26,7 @@ const GuestView = props => {
         <GuestViewContainer>            
             <Route exact path="/" render={props => <EmployeeListContainer {...props} users={users} />} />
             <Route exact path="/employee/:id" render={props => <EmployeeCard {...props} />} />
-            <Route path="/employee/:id/tip" render={props => <PaymentFormContainer {...props} /> } />
+            <Route path="/employee/:id/tip" render={props => <PaymentFormContainer {...props} users={users} /> } />
         </GuestViewContainer>
     )
 }

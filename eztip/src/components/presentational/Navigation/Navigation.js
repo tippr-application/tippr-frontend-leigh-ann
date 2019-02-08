@@ -20,7 +20,13 @@ display: flex;
 align-items: center;
 
 @media (max-width: 525px) {
-    height: 100px;
+    height: 110px;
+}
+
+h1 {
+    text-transform: lowercase;
+    font-family: Ubuntu;
+    font-weight: 700;
 }
 `;
 
@@ -47,18 +53,15 @@ margin-left: 20px;
 display: flex;
 align-items: flex-end;
 
-@media (max-width: 700px) {
-    margin-left: 0;
-
-    h1 {
-        font-size: 3rem;
-        }
-    }
-
 @media (max-width: 525px) {
     justify-content: center;
+        margin-left: 0;
+    
+    h1 {
+        margin-bottom: 25px;
+    }
 }
-}
+
 `;
 
 const NavLinkDiv = styled.div`
@@ -70,13 +73,10 @@ align-items: flex-end;
 
 h2 {
     margin-right: 20px;
+    font-size: 2rem;
 
     &:hover {
         cursor: pointer;
-    }
-
-    @media (max-width: 700px) {
-        font-size: 2rem;
     }
 
     @media (max-width: 525px) {
@@ -119,8 +119,13 @@ const Navigation = props => {
                     <h1>tippr</h1>
                 </LogoDiv>
                 <NavLinkDiv>
-                    <NavLink to="/"><h2>Home</h2></NavLink>
-                    {props.userType === "employee" ? <NavLink to="/form"><h2>Update Profile</h2></NavLink> : null}
+                    <NavLink exact to="/">
+                    <h2>Home</h2>
+                    </NavLink>
+                    {props.userType === "employee" && (
+                    <NavLink to="/form"><h2>Update Profile</h2>
+                    </NavLink>
+                    )}
                     <h2 onClick={e=> logout(e)}>Sign Out</h2>
                 </NavLinkDiv>
             </NavigationDiv>

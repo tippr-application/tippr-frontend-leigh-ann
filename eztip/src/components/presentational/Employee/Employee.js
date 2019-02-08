@@ -13,15 +13,13 @@ const EmployeeProfileDiv = styled.div`
 
 const ProfileInfoContainer = styled.div`
 display: flex;
+flex-direction: column;
 width: 85%;
 margin: 0 auto;
 border: 1px solid #b5b5b5;
 justify-content: space-evenly;
 padding: 50px 20px;
-
-@media (max-width: 525px) {
-    flex-direction: column;
-}
+background: white;
 `;
 
 const ProfileImgContainer = styled.div`
@@ -33,6 +31,14 @@ padding: 15px;
 
 @media (max-width: 525px) {
     width: 100%;
+}
+`;
+
+const ProfileInfoDiv = styled.div`
+display: flex;
+
+@media (max-width: 525px) {
+  flex-direction: column;
 }
 `;
 
@@ -80,9 +86,12 @@ const Employee = props => {
 
   return (
     <EmployeeProfileDiv>
-      <h1>Hi there, {props.userInfo.first_name}!</h1>
       <ProfileInfoContainer>
-      <ProfileImgContainer>
+        <div>
+          <h1>Hi there, {props.userInfo.first_name}!</h1>
+        </div>
+        <ProfileInfoDiv>
+        <ProfileImgContainer>
         <ProfileImg
           alt={`${props.userInfo.first_name} ${props.userInfo.last_name}`}
           src={props.userInfo.profile_photo}
@@ -101,6 +110,8 @@ const Employee = props => {
         <button onClick={e => routeToUpdateForm(e)}>Update Profile</button>
       </ProfileStatsContainer>
 
+        </ProfileInfoDiv>
+      
       </ProfileInfoContainer>
     </EmployeeProfileDiv>
   );
