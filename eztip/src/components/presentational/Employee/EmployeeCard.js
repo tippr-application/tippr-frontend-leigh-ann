@@ -13,7 +13,7 @@ const CardDiv = styled.div`
   margin: 2.9%;
   padding: 30px 0;
   background-color: white;
-  border-radius: 5px;
+  border: 1px solid #b5b5b5;
 
   a {
     text-align: center;
