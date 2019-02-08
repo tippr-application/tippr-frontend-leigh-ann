@@ -8,6 +8,7 @@ display: flex;
 flex-wrap: wrap;
 max-width: 1200px;
 width: 100%;
+justify-content: center;
 `;
 
 const EmployeeList = props => {
