@@ -11,7 +11,7 @@ margin-top: 15vh;
 max-width: 600px;
 width: 100%;
 display: flex;
-flex-direction: column
+flex-direction: column;
 justify-content: center;
 align-items: center;
 padding: 40px;
