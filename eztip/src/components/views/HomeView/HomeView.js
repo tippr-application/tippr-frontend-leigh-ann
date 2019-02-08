@@ -24,7 +24,6 @@ class HomeView extends React.Component {
     return (
       <HomeViewContainer>
         <Navigation history={this.props.history} />
-        <h1>Welcome</h1>
         {this.props.userType === "employee" ? (
           <Route path="/" render={props => <EmployeeView {...props} />} />
         ) : (

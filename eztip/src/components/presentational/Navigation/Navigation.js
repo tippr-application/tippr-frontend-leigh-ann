@@ -22,6 +22,12 @@ align-items: center;
 @media (max-width: 525px) {
     height: 100px;
 }
+
+h1 {
+    text-transform: lowercase;
+    font-family: Ubuntu;
+    font-weight: 700;
+}
 `;
 
 const NavigationDiv = styled.div`

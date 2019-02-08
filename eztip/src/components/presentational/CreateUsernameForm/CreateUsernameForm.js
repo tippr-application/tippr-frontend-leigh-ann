@@ -45,6 +45,15 @@ const ButtonDiv = styled.div`
   }
 `;
 
+const Select = styled.select`
+    font-size: 1.6rem;
+    background: #f8f8f8;
+    border: 1px solid #b5b5b5;
+    color: black;
+    margin-bottom: 10px;
+    font-family: "Source Sans Pro", sans-serif;
+`;
+
 class CreateUsernameForm extends React.Component {
   state = {
     username: "",
@@ -91,11 +100,11 @@ class CreateUsernameForm extends React.Component {
             onChange={this.inputChange}
             placeholder="Create password"
           />
-                        <select required name="user_type" onChange={this.inputChange} defaultValue="">
+            <Select required name="user_type" onChange={this.inputChange} defaultValue="">
               <option disabled value="">Please select a profile type</option>
                 <option value="employee">Employee</option>
                 <option value="guest">Guest</option>
-              </select>
+              </Select>
           <ButtonDiv>
             <button>Sign up</button>
             <button onClick={this.cancel} type="button">Cancel</button>

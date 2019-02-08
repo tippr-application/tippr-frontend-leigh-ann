@@ -84,6 +84,7 @@ class PaymentForm extends React.Component {
   render() {
     return (
       <PaymentFormContainer>
+      <h1>Send A Tip</h1>
         <Form onSubmit={e => this.submitPayment(e)}>
           <input
             required
