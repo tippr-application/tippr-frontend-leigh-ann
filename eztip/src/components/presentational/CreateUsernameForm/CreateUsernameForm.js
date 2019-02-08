@@ -4,25 +4,33 @@ import { registerUser } from "../../../store/actions";
 import styled from "styled-components";
 import PropTypes from 'prop-types';
 
+const PageContainer = styled.div`
+margin: 0 auto;
+margin-top: 20vh;
+`;
+
 const RegisterFormContainer = styled.div`
 border: 1px solid #b5b5b5;
 margin: 0 auto;
-margin-top: 20vh;
 max-width: 600px;
 width: 100%;
 display: flex;
-flex-direction: column
+flex-direction: column;
 justify-content: center;
 align-items: center;
 padding: 40px;
 background: white;
+-webkit-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
+-moz-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
+box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
 
 @media (max-width: 700px ) {
   width: 85%;
 }
 
-h1 {
+h2 {
   margin-bottom: 40px;
+  font-size: 2.8rem;
 }
 `;
 
@@ -58,6 +66,14 @@ const Select = styled.select`
     font-family: "Source Sans Pro", sans-serif;
 `;
 
+const Logo = styled.h1`
+font-family: "Ubuntu", sans-serif;
+text-transform: lowercase;
+text-align: center;
+font-size: 4.5rem;
+margin-bottom: 50px;
+`;
+
 class CreateUsernameForm extends React.Component {
   state = {
     username: "",
@@ -87,8 +103,10 @@ class CreateUsernameForm extends React.Component {
 
   render() {
     return (
+      <PageContainer>
+      <Logo>Tippr</Logo>
       <RegisterFormContainer>
-        <h1>Sign Up</h1>
+        <h2>Sign Up</h2>
         <Form onSubmit={e => this.registerUser(e)}>
           <input
             type="text"
@@ -115,6 +133,7 @@ class CreateUsernameForm extends React.Component {
           </ButtonDiv>
         </Form>
       </RegisterFormContainer>
+      </PageContainer>
     );
   }
 }

@@ -5,10 +5,14 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+const PageContainer = styled.div`
+margin: 0 auto;
+margin-top: 20vh;
+`;
+
 const LoginFormContainer = styled.div`
 border: 1px solid #b5b5b5;
 margin: 0 auto;
-margin-top: 20vh;
 max-width: 600px;
 width: 100%;
 display: flex;
@@ -17,13 +21,17 @@ justify-content: center;
 align-items: center;
 padding: 40px;
 background: white;
+-webkit-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
+-moz-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
+box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
 
 @media (max-width: 700px ) {
   width: 85%;
 }
 
-h1 {
+h2 {
   margin-bottom: 40px;
+  font-size: 2.8rem;
 }
 `;
 
@@ -53,8 +61,16 @@ button {
 
 const SignUpContainer = styled(LoginFormContainer)`
 margin-top: 25px;
+
 `;
 
+const Logo = styled.h1`
+font-family: "Ubuntu", sans-serif;
+text-transform: lowercase;
+text-align: center;
+font-size: 4.5rem;
+margin-bottom: 50px;
+`;
 
 class LoginForm extends React.Component {
   state = {
@@ -86,9 +102,10 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <>
+      <PageContainer>
+        <Logo>Tippr</Logo>
       <LoginFormContainer>
-        <h1>Please Sign In</h1>
+        <h2>Please Sign In</h2>
         <Form onSubmit={e => this.submitLogin(e)}>
           <input
           required
@@ -116,7 +133,7 @@ class LoginForm extends React.Component {
       <SignUpContainer>
         <p>New to this? <Link to="/signup">Sign up</Link>.</p>
       </SignUpContainer>
-      </>
+      </PageContainer>
     );
   }
 }
