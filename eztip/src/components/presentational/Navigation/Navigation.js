@@ -25,7 +25,7 @@ align-items: center;
 
 h1 {
     text-transform: lowercase;
-    font-family: Ubuntu;
+    font-family: "Ubuntu", sans-serif;
     font-weight: 700;
 }
 `;

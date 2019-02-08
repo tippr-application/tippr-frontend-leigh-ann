@@ -17,10 +17,7 @@ import {
   UPDATE_PROFILE_INFO_INIT,
   UPDATE_PROFILE_INFO_SUCCESS,
   UPDATE_PROFILE_INFO_FAILURE,
-  LOGOUT,
-      SUBMIT_PAYMENT_INIT,
-    SUBMIT_PAYMENT_SUCCESS,
-    SUBMIT_PAYMENT_FAILURE
+  LOGOUT
 } from "../types";
 
 const initialState = {
@@ -42,9 +39,7 @@ const initialState = {
   loggedInUsername: "",
   loggedInUserId: "",
   error: "",
-  token: "",
-  isSubmittingPayment: false,
-  paymentSubmitted: false,
+  token: ""
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -183,23 +178,6 @@ export const userReducer = (state = initialState, action) => {
         users: [],
         userType: ""
       };
-      case SUBMIT_PAYMENT_INIT:
-      return {
-        ...state,
-        isSubmittingPayment: true
-      };
-      case SUBMIT_PAYMENT_SUCCESS:
-      return {
-        ...state,
-        paymentSubmitted: true,
-        isSubmittingPayment: false,
-      };
-      case SUBMIT_PAYMENT_FAILURE:
-      return {
-        ...state,
-        isSubmittingPayment: false,
-        error: action.payload
-      }
     default:
       return state;
   }

@@ -126,10 +126,6 @@ LoginForm.propTypes = {
   login: PropTypes.func.isRequired
 }
 
-const mapStateToProps = state => {
-
-}
-
 export default connect(
   null,
   { login }
