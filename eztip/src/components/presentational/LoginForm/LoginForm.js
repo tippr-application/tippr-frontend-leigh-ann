@@ -97,6 +97,8 @@ class LoginForm extends React.Component {
 
   submitLogin = e => {
     e.preventDefault();
+    localStorage.setItem("username", this.state.username);
+    localStorage.setItem("password", this.state.password)
     this.props.login({
       username: this.state.username,
       password: this.state.password
