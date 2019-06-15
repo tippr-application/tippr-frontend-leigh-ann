@@ -172,6 +172,7 @@ export const userReducer = (state = initialState, action) => {
         error: action.payload
       };
     case LOGOUT:
+      localStorage.clear()
       return {
         ...state,
         loggedIn: false,
