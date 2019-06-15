@@ -8,6 +8,7 @@ import styled from 'styled-components';
 const PageContainer = styled.div`
 margin: 0 auto;
 margin-top: 20vh;
+text-align: center;
 
 @media (max-width:500px) {
   margin-top: 5vh;
@@ -24,6 +25,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 padding: 40px;
+margin-top: 50px;
 background: white;
 -webkit-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
 -moz-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
@@ -68,12 +70,17 @@ margin-top: 25px;
 
 `;
 
-const Logo = styled.h1`
+const Logo = styled.a`
 font-family: "Ubuntu", sans-serif;
 text-transform: lowercase;
 text-align: center;
 font-size: 4.5rem;
-margin-bottom: 50px;
+text-decoration: none;
+color: #000000;
+
+&:hover {
+  text-decoration: none;
+}
 `;
 
 class LoginForm extends React.Component {
@@ -107,7 +114,7 @@ class LoginForm extends React.Component {
   render() {
     return (
       <PageContainer>
-        <Logo>Tippr</Logo>
+        <Logo href="https://justin-tippr.netlify.com/">Tippr</Logo>
       <LoginFormContainer>
         <h2>Please Sign In</h2>
         <Form onSubmit={e => this.submitLogin(e)}>
