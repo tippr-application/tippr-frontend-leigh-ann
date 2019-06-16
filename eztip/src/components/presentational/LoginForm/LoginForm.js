@@ -83,11 +83,32 @@ color: #000000;
 }
 `;
 
+const Error = styled.p`
+padding-bottom: 25px;
+`;
+
 class LoginForm extends React.Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    error: null
   };
+
+  componeneDidMount() {
+    this.setState({
+      error: null
+    })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log("CDU ran before if");
+    if (this.props.error !== prevProps.error) {
+      console.log("CDU ran inside if");
+      this.setState({
+        error: this.props.error
+      })
+    }
+  }
 
   inputChange = e => {
     this.setState({
@@ -101,15 +122,16 @@ class LoginForm extends React.Component {
     localStorage.setItem("password", this.state.password)
     this.props.login({
       username: this.state.username,
-      password: this.state.password
-    });
+      password: this.state.password,
+    })
   };
 
   clearInfo = e => {
     e.preventDefault();
     this.setState({
       username: "",
-      password: ""
+      password: "",
+      error: null
     })
   }
 
@@ -119,6 +141,7 @@ class LoginForm extends React.Component {
         <Logo href="https://justin-tippr.netlify.com/">Tippr</Logo>
       <LoginFormContainer>
         <h2>Please Sign In</h2>
+        {this.props.error && <Error>{this.state.error}</Error>}
         <Form onSubmit={e => this.submitLogin(e)}>
           <input
           required
@@ -151,12 +174,16 @@ class LoginForm extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  error: state.userReducer.error,
+})
+
 LoginForm.propTypes = {
   history: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   { login }
 )(LoginForm);

@@ -85,12 +85,31 @@ color: #000000;
 }
 `;
 
+const Error = styled.p`
+padding-bottom: 25px;
+`;
+
 class CreateUsernameForm extends React.Component {
   state = {
     username: "",
     password: "",
-    user_type: ""
+    user_type: "",
+    error: null
   };
+
+  componentDidMount() {
+    this.setState({
+      error: null
+    })
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.error !== prevProps.error) {
+      this.setState({
+        error: this.props.error
+      })
+    }
+  }
 
   inputChange = e => {
     this.setState({
@@ -109,6 +128,9 @@ class CreateUsernameForm extends React.Component {
 
   cancel = e => {
     e.preventDefault();
+    this.setState({
+      error: null
+    });
     this.props.history.push("/");
   };
 
@@ -118,6 +140,7 @@ class CreateUsernameForm extends React.Component {
       <Logo href="https://justin-tippr.netlify.com/">Tippr</Logo>
       <RegisterFormContainer>
         <h2>Sign Up</h2>
+        {this.props.error && <Error>{this.state.error}</Error>}
         <Form onSubmit={e => this.registerUser(e)}>
           <input
             type="text"
@@ -149,12 +172,16 @@ class CreateUsernameForm extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  error: state.userReducer.error
+})
+
 CreateUsernameForm.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   { registerUser }
 )(CreateUsernameForm);
