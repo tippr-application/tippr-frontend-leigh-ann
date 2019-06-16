@@ -85,6 +85,7 @@ color: #000000;
 
 const Error = styled.p`
 padding-bottom: 25px;
+color: red;
 `;
 
 class LoginForm extends React.Component {

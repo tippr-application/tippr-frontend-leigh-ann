@@ -91,7 +91,7 @@ export const userReducer = (state = initialState, action) => {
     case LOGIN_FAILURE:
       let loginError;
       if (action.payload === undefined) {
-        loginError = "Invalid credentials. Try again. Trying to sign up? Click the link below.";
+        loginError = "Invalid credentials. Trying to sign up? Click the link below.";
       }
       return {
         ...state,
@@ -137,7 +137,7 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isRegisteringUser: false,
-        error: "Account already exists."
+        error: "Account already exists. Trying to sign in? Click the link below."
       };
     case CREATE_PROFILE_INFO_INIT:
       return {

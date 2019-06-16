@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import { registerUser } from "../../../store/actions";
 import styled from "styled-components";
 import PropTypes from 'prop-types';
@@ -72,6 +73,10 @@ const Select = styled.select`
     font-family: "Source Sans Pro", sans-serif;
 `;
 
+const LoginContainer = styled(RegisterFormContainer)`
+margin-top: 25px;
+`;
+
 const Logo = styled.a`
 font-family: "Ubuntu", sans-serif;
 text-transform: lowercase;
@@ -87,6 +92,7 @@ color: #000000;
 
 const Error = styled.p`
 padding-bottom: 25px;
+color: red;
 `;
 
 class CreateUsernameForm extends React.Component {
@@ -167,6 +173,9 @@ class CreateUsernameForm extends React.Component {
           </ButtonDiv>
         </Form>
       </RegisterFormContainer>
+      <LoginContainer>
+        <p>Need to <Link to="/">sign in</Link>?</p>
+      </LoginContainer>
       </PageContainer>
     );
   }
