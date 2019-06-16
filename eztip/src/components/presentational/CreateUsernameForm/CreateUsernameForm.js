@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import { registerUser } from "../../../store/actions";
 import styled from "styled-components";
 import PropTypes from 'prop-types';
@@ -7,6 +8,7 @@ import PropTypes from 'prop-types';
 const PageContainer = styled.div`
 margin: 0 auto;
 margin-top: 20vh;
+text-align: center;
 
 @media (max-width:500px) {
   margin-top: 5vh;
@@ -23,6 +25,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 padding: 40px;
+margin-top: 50px;
 background: white;
 -webkit-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
 -moz-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
@@ -70,20 +73,49 @@ const Select = styled.select`
     font-family: "Source Sans Pro", sans-serif;
 `;
 
-const Logo = styled.h1`
+const LoginContainer = styled(RegisterFormContainer)`
+margin-top: 25px;
+`;
+
+const Logo = styled.a`
 font-family: "Ubuntu", sans-serif;
 text-transform: lowercase;
 text-align: center;
 font-size: 4.5rem;
-margin-bottom: 50px;
+text-decoration: none;
+color: #000000;
+
+&:hover {
+  text-decoration: none;
+}
+`;
+
+const Error = styled.p`
+padding-bottom: 25px;
+color: red;
 `;
 
 class CreateUsernameForm extends React.Component {
   state = {
     username: "",
     password: "",
-    user_type: ""
+    user_type: "",
+    error: null
   };
+
+  componentDidMount() {
+    this.setState({
+      error: null
+    })
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.error !== prevProps.error) {
+      this.setState({
+        error: this.props.error
+      })
+    }
+  }
 
   inputChange = e => {
     this.setState({
@@ -102,15 +134,19 @@ class CreateUsernameForm extends React.Component {
 
   cancel = e => {
     e.preventDefault();
+    this.setState({
+      error: null
+    });
     this.props.history.push("/");
   };
 
   render() {
     return (
       <PageContainer>
-      <Logo>Tippr</Logo>
+      <Logo href="https://justin-tippr.netlify.com/">Tippr</Logo>
       <RegisterFormContainer>
         <h2>Sign Up</h2>
+        {this.props.error && <Error>{this.state.error}</Error>}
         <Form onSubmit={e => this.registerUser(e)}>
           <input
             type="text"
@@ -137,10 +173,17 @@ class CreateUsernameForm extends React.Component {
           </ButtonDiv>
         </Form>
       </RegisterFormContainer>
+      <LoginContainer>
+        <p>Need to <Link to="/">sign in</Link>?</p>
+      </LoginContainer>
       </PageContainer>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  error: state.userReducer.error
+})
 
 CreateUsernameForm.propTypes = {
   match: PropTypes.object.isRequired,
@@ -148,6 +191,6 @@ CreateUsernameForm.propTypes = {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   { registerUser }
 )(CreateUsernameForm);

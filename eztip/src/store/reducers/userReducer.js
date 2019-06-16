@@ -41,7 +41,7 @@ const initialState = {
   userInfo: {},
   loggedInUsername: "",
   loggedInUserId: "",
-  error: "",
+  error: null,
   token: "",
   // isSubmittingPayment: false,
   // paymentSubmitted: false,
@@ -53,7 +53,7 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetchingUsers: true,
-        error: ""
+        error: null
       };
     case GET_EMPLOYEES_SUCCESS:
       const userInfo = action.payload
@@ -74,7 +74,7 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggingIn: true,
-        error: "",
+        error: null,
         userType: ""
       };
     case LOGIN_SUCCESS:
@@ -89,15 +89,19 @@ export const userReducer = (state = initialState, action) => {
         loggedInUserId: action.payload.userId
       };
     case LOGIN_FAILURE:
+      let loginError;
+      if (action.payload === undefined) {
+        loginError = "Invalid credentials. Trying to sign up? Click the link below.";
+      }
       return {
         ...state,
         isLoggingIn: false,
-        error: action.payload
+        error: loginError
       };
     case UPDATE_PHOTO_INIT:
       return {
         ...state,
-        error: ""
+        error: null
       };
     case UPDATE_PHOTO_SUCCESS:
       return {
@@ -116,7 +120,7 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isRegisteringUser: true,
-        error: ""
+        error: null
       };
     case REGISTER_SUCCESS:
       localStorage.setItem("token", action.payload.token);
@@ -129,16 +133,17 @@ export const userReducer = (state = initialState, action) => {
         userType: action.payload.user_type
       };
     case REGISTER_FAILURE:
+      console.log(action.payload);
       return {
         ...state,
         isRegisteringUser: false,
-        error: action.payload
+        error: "Account already exists. Trying to sign in? Click the link below."
       };
     case CREATE_PROFILE_INFO_INIT:
       return {
         ...state,
         isCreatingProfile: true,
-        error: ""
+        error: null
       };
     case CREATE_PROFILE_INFO_SUCCESS:
       return {
@@ -156,7 +161,7 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isUpdatingProfile: true,
-        error: ""
+        error: null
       };
     case UPDATE_PROFILE_INFO_SUCCESS:
       return {
@@ -172,13 +177,14 @@ export const userReducer = (state = initialState, action) => {
         error: action.payload
       };
     case LOGOUT:
+      localStorage.clear();
       return {
         ...state,
         loggedIn: false,
         userInfo: {},
         loggedInUsername: "",
         loggedInUserId: "",
-        error: "",
+        error: null,
         token: "",
         users: [],
         userType: ""

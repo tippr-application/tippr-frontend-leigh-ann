@@ -8,6 +8,7 @@ import styled from 'styled-components';
 const PageContainer = styled.div`
 margin: 0 auto;
 margin-top: 20vh;
+text-align: center;
 
 @media (max-width:500px) {
   margin-top: 5vh;
@@ -24,6 +25,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 padding: 40px;
+margin-top: 50px;
 background: white;
 -webkit-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
 -moz-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.15);
@@ -68,19 +70,46 @@ margin-top: 25px;
 
 `;
 
-const Logo = styled.h1`
+const Logo = styled.a`
 font-family: "Ubuntu", sans-serif;
 text-transform: lowercase;
 text-align: center;
 font-size: 4.5rem;
-margin-bottom: 50px;
+text-decoration: none;
+color: #000000;
+
+&:hover {
+  text-decoration: none;
+}
+`;
+
+const Error = styled.p`
+padding-bottom: 25px;
+color: red;
 `;
 
 class LoginForm extends React.Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    error: null
   };
+
+  componeneDidMount() {
+    this.setState({
+      error: null
+    })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log("CDU ran before if");
+    if (this.props.error !== prevProps.error) {
+      console.log("CDU ran inside if");
+      this.setState({
+        error: this.props.error
+      })
+    }
+  }
 
   inputChange = e => {
     this.setState({
@@ -90,26 +119,30 @@ class LoginForm extends React.Component {
 
   submitLogin = e => {
     e.preventDefault();
+    localStorage.setItem("username", this.state.username);
+    localStorage.setItem("password", this.state.password)
     this.props.login({
       username: this.state.username,
-      password: this.state.password
-    });
+      password: this.state.password,
+    })
   };
 
   clearInfo = e => {
     e.preventDefault();
     this.setState({
       username: "",
-      password: ""
+      password: "",
+      error: null
     })
   }
 
   render() {
     return (
       <PageContainer>
-        <Logo>Tippr</Logo>
+        <Logo href="https://justin-tippr.netlify.com/">Tippr</Logo>
       <LoginFormContainer>
         <h2>Please Sign In</h2>
+        {this.props.error && <Error>{this.state.error}</Error>}
         <Form onSubmit={e => this.submitLogin(e)}>
           <input
           required
@@ -142,12 +175,16 @@ class LoginForm extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  error: state.userReducer.error,
+})
+
 LoginForm.propTypes = {
   history: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   { login }
 )(LoginForm);

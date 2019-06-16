@@ -120,11 +120,11 @@ const ButtonDiv = styled.div`
       width: 75%;
     }
 
+  }
     @media (max-width: 700px) {
       width: 100%;
       align-items: center;
     }
-  }
 `;
 
 const Employee = props => {
@@ -158,7 +158,6 @@ const Employee = props => {
             </p>
             <ButtonDiv>
             <button onClick={e => routeToUpdateForm(e)}>Update Profile</button>
-            <button>Tips Received</button>
             </ButtonDiv>
 
           </ProfileStatsContainer>
